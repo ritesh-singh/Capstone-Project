@@ -10,6 +10,11 @@ import android.widget.FrameLayout;
 
 import com.example.riteshkumarsingh.capstone_stage2.R;
 import com.example.riteshkumarsingh.capstone_stage2.core.BaseActivity;
+import com.example.riteshkumarsingh.capstone_stage2.ui.home.fragments.CelebsFragment;
+import com.example.riteshkumarsingh.capstone_stage2.ui.home.fragments.ExploreFragment;
+import com.example.riteshkumarsingh.capstone_stage2.ui.home.fragments.MoviesFragment;
+import com.example.riteshkumarsingh.capstone_stage2.ui.home.fragments.TvFragment;
+import com.example.riteshkumarsingh.capstone_stage2.utils.ActivityUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,6 +44,41 @@ public class HomeActivity extends BaseActivity {
         setUpDrawerContent();
     }
 
+    /**
+     *
+     * @param id - NavView menu item id.
+     * This function is responsible for adding different fragments based on Navigation Drawer Click.
+     */
+    private void addFragmentView(int id){
+        switch (id){
+            case R.id.nav_explore:
+                ActivityUtils.addAndReplaceFragment(new ExploreFragment(),
+                        R.id.main_content_view_container,
+                        getSupportFragmentManager());
+                break;
+            case R.id.nav_movies:
+                ActivityUtils.addAndReplaceFragment(new MoviesFragment(),
+                        R.id.main_content_view_container,
+                        getSupportFragmentManager());
+                break;
+            case R.id.nav_tv_shows:
+                ActivityUtils.addAndReplaceFragment(new TvFragment(),
+                        R.id.main_content_view_container,
+                        getSupportFragmentManager());
+                break;
+            case R.id.nav_celebs:
+                ActivityUtils.addAndReplaceFragment(new CelebsFragment(),
+                        R.id.main_content_view_container,
+                        getSupportFragmentManager());
+                break;
+            default:
+                return;
+        }
+    }
+
+    /**
+     * Setting up the drawer content and adding NavigationOnItemSelectedListener.
+     */
     private void setUpDrawerContent(){
         mNavigationView.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
@@ -46,6 +86,7 @@ public class HomeActivity extends BaseActivity {
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         menuItem.setChecked(true);
                         mDrawerLayout.closeDrawers();
+                        addFragmentView(menuItem.getItemId());
                         return true;
                     }
                 });
