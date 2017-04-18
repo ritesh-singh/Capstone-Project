@@ -1,4 +1,4 @@
-package com.example.riteshkumarsingh.capstone_stage2.ui.home;
+package com.example.riteshkumarsingh.capstone_stage2.ui.home.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;

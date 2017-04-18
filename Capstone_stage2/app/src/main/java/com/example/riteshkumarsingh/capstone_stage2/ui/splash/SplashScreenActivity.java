@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.example.riteshkumarsingh.capstone_stage2.core.BaseActivity;
-import com.example.riteshkumarsingh.capstone_stage2.ui.home.HomeActivity;
+import com.example.riteshkumarsingh.capstone_stage2.ui.home.activities.HomeActivity;
 
 /**
  * Created by riteshkumarsingh on 18/04/17.
