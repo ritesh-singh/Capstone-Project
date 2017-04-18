@@ -1,8 +1,28 @@
 <resources>
     <string name="app_name">Dekho</string>
     <string name="title_activity_splash_screen">Dekho</string>
+
     <string name="explore">Explore</string>
     <string name="movies">Movies</string>
     <string name="tv">Tv</string>
     <string name="celebs">Celebs</string>
+
+    <string name="explore_movies">Movies</string>
+    <string name="explore_tvshows">Tv Shows</string>
+
+
+    <string name="movies_popular">Popular</string>
+    <string name="movies_top_rated">Top Rated</string>
+    <string name="movies_now_playing">Now Playing</string>
+    <string name="movies_up_coming">Upcoming</string>
+
+
+    <string name="tv_popular">Popular</string>
+    <string name="tv_top_rated">Top Rated</string>
+    <string name="tv_on_tv">On Tv</string>
+    <string name="tv_arriving">Arriving</string>
+
+
+    <string name="celeb_popular">Popular</string>
+
 </resources>

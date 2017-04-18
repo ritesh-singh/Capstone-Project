@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="explore">
+        <item>@string/explore_movies</item>
+        <item>@string/explore_tvshows</item>
+    </string-array>
+
+    <string-array name="movies">
+        <item>@string/movies_popular</item>
+        <item>@string/movies_top_rated</item>
+        <item>@string/movies_now_playing</item>
+        <item>@string/movies_up_coming</item>
+    </string-array>
+
+    <string-array name="tv">
+        <item>@string/tv_popular</item>
+        <item>@string/tv_top_rated</item>
+        <item>@string/tv_on_tv</item>
+        <item>@string/tv_arriving</item>
+    </string-array>
+
+    <string-array name="celeb">
+        <item>@string/celeb_popular</item>
+    </string-array>
+
+</resources>
