@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Dekho</string>
+    <string name="title_activity_splash_screen">Dekho</string>
+    <string name="explore">Explore</string>
+    <string name="movies">Movies</string>
+    <string name="tv">Tv</string>
+    <string name="celebs">Celebs</string>
+</resources>
