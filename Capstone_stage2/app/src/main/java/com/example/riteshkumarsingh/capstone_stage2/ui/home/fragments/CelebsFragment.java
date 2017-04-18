@@ -1,15 +1,31 @@
 package com.example.riteshkumarsingh.capstone_stage2.ui.home.fragments;
 
-import com.example.riteshkumarsingh.capstone_stage2.core.BaseFragment;
+import android.support.v4.app.Fragment;
+
+import com.example.riteshkumarsingh.capstone_stage2.ui.home.base.NavViewsBaseFragment;
 
 /**
  * Created by riteshkumarsingh on 18/04/17.
  */
 
-public class CelebsFragment extends BaseFragment {
+public class CelebsFragment extends NavViewsBaseFragment {
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+    }
+
+    @Override
+    protected void setupViewPager() {
+
+    }
+
+    @Override
+    protected void setupTabLayout() {
+
+    }
+
+    public static Fragment newInstance() {
+        return new CelebsFragment();
     }
 }

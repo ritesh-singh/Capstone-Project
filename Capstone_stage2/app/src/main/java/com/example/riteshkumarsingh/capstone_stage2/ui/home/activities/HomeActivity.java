@@ -30,6 +30,7 @@ public class HomeActivity extends BaseActivity {
     @BindView(R.id.nav_view)
     NavigationView mNavigationView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,22 +53,22 @@ public class HomeActivity extends BaseActivity {
     private void addFragmentView(int id){
         switch (id){
             case R.id.nav_explore:
-                ActivityUtils.addAndReplaceFragment(new ExploreFragment(),
+                ActivityUtils.addAndReplaceFragment(ExploreFragment.newInstance(),
                         R.id.main_content_view_container,
                         getSupportFragmentManager());
                 break;
             case R.id.nav_movies:
-                ActivityUtils.addAndReplaceFragment(new MoviesFragment(),
+                ActivityUtils.addAndReplaceFragment(MoviesFragment.newInstance(),
                         R.id.main_content_view_container,
                         getSupportFragmentManager());
                 break;
             case R.id.nav_tv_shows:
-                ActivityUtils.addAndReplaceFragment(new TvFragment(),
+                ActivityUtils.addAndReplaceFragment(TvFragment.newInstance(),
                         R.id.main_content_view_container,
                         getSupportFragmentManager());
                 break;
             case R.id.nav_celebs:
-                ActivityUtils.addAndReplaceFragment(new CelebsFragment(),
+                ActivityUtils.addAndReplaceFragment(CelebsFragment.newInstance(),
                         R.id.main_content_view_container,
                         getSupportFragmentManager());
                 break;
