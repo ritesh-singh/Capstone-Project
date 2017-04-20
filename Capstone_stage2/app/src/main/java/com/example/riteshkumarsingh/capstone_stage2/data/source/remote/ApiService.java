@@ -1,5 +1,6 @@
 package com.example.riteshkumarsingh.capstone_stage2.data.source.remote;
 
+import com.example.riteshkumarsingh.capstone_stage2.data.models.configuration.Configuration;
 import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.Movies;
 
 import java.util.Map;
@@ -13,6 +14,10 @@ import rx.Observable;
  */
 
 public interface ApiService {
+
+    @GET("configuration")
+    Observable<Configuration> getConfiguration();
+
     @GET("movie/popular")
     Observable<Movies> getPopularMovies(@QueryMap Map<String, String> options);
 
@@ -27,4 +32,5 @@ public interface ApiService {
 
     @GET("movie/latest")
     Observable<Movies> getLatestMovies(@QueryMap Map<String, String> options);
+
 }

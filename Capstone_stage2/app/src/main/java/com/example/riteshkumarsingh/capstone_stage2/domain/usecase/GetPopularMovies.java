@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.Movies;
 import com.example.riteshkumarsingh.capstone_stage2.data.source.DataRepository;
 import com.example.riteshkumarsingh.capstone_stage2.di.scope.ActivityScope;
+import com.example.riteshkumarsingh.capstone_stage2.di.scope.FragmentScope;
 
 import java.util.Map;
 
@@ -16,7 +17,7 @@ import rx.Observable;
  * Created by riteshkumarsingh on 19/04/17.
  */
 
-@ActivityScope
+@FragmentScope
 public class GetPopularMovies extends MovieUseCaseBasic {
 
     @Inject
