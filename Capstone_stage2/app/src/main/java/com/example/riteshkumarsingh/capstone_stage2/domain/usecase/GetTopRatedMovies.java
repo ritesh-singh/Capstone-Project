@@ -17,7 +17,7 @@ import rx.Observable;
  */
 
 @ActivityScope
-public class GetTopRatedMovies extends MovieUseCaseView {
+public class GetTopRatedMovies extends MovieUseCaseBasic {
 
     @Inject
     public GetTopRatedMovies(@NonNull DataRepository dataRepository){

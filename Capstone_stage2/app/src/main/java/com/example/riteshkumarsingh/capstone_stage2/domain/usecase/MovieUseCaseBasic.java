@@ -11,7 +11,7 @@ import rx.Observable;
  * Created by riteshkumarsingh on 20/04/17.
  */
 
-public abstract class MovieUseCaseView {
+public abstract class MovieUseCaseBasic {
 
     public DataRepository mDataRepository;
 
