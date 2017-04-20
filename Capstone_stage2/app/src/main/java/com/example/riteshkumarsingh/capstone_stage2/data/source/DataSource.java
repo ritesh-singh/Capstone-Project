@@ -1,8 +1,5 @@
 package com.example.riteshkumarsingh.capstone_stage2.data.source;
 
-import android.graphics.Movie;
-
-import com.example.riteshkumarsingh.capstone_stage2.data.models.configuration.Configuration;
 import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.Movies;
 
 import java.util.Map;
@@ -14,7 +11,6 @@ import rx.Observable;
  */
 
 public interface DataSource {
-    Observable<Configuration> getConfiguration();
     Observable<Movies> getPopularMovies(Map<String,String> options);
     Observable<Movies> getTopRatedMovies(Map<String,String> options);
     Observable<Movies> getNowPlayingMovies(Map<String,String> options);

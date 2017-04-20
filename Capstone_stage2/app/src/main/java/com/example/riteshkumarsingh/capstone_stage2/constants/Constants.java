@@ -43,5 +43,27 @@ public final class Constants {
     /**
      * Celebs Screen Page Titles
      */
-    public static final String CELEB_POPULAR = "POpular";
+    public static final String CELEB_POPULAR = "Popular";
+
+    public static final String SHARED_PREF_FILENAME = "DEKHO_SHARED_PREF";
+
+    public static final String IMAGE_ORIGINAL_SIZE = "original";
+
+    /**
+     * Poster Image sizes
+     */
+    public static final String POSTER_IMAGE_SIZE_W_154 = "w154";
+    public static final String POSTER_IMAGE_SIZE_W_185 = "w185";
+    public static final String POSTER_IMAGE_SIZE_W_342 = "w342";
+    public static final String POSTER_IMAGE_SIZE_W_500 = "w500";
+    public static final String POSTER_IMAGE_SIZE_W_780 = "w780";
+
+    /**
+     * Backdrop sizes
+     */
+    public static final String BACK_DROP_SIZE_W_300 = "w300";
+    public static final String BACK_DROP_SIZE_W_780 = "w780";
+    public static final String BACK_DROP_SIZE_W_1280 = "w1280";
+
+
 }

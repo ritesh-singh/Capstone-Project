@@ -2,7 +2,6 @@ package com.example.riteshkumarsingh.capstone_stage2.data.source;
 
 import android.support.annotation.NonNull;
 
-import com.example.riteshkumarsingh.capstone_stage2.data.models.configuration.Configuration;
 import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.Movies;
 import com.example.riteshkumarsingh.capstone_stage2.data.source.firebase.FireBaseDataSource;
 import com.example.riteshkumarsingh.capstone_stage2.data.source.remote.RemoteDataSource;
@@ -32,11 +31,6 @@ public class DataRepository implements DataSource{
                           @NonNull FireBaseDataSource firebaseDataSource) {
         this.mRemoteDataSource = remoteDataSource;
         this.mFireBaseDataSource = firebaseDataSource;
-    }
-
-    @Override
-    public Observable<Configuration> getConfiguration() {
-        return mRemoteDataSource.getConfiguration();
     }
 
     @Override
