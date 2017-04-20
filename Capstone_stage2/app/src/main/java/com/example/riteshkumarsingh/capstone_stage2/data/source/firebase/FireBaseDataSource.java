@@ -1,5 +1,6 @@
 package com.example.riteshkumarsingh.capstone_stage2.data.source.firebase;
 
+import com.example.riteshkumarsingh.capstone_stage2.data.models.configuration.Configuration;
 import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.Movies;
 import com.example.riteshkumarsingh.capstone_stage2.data.source.DataSource;
 import com.example.riteshkumarsingh.capstone_stage2.di.scope.ActivityScope;
@@ -20,6 +21,11 @@ public class FireBaseDataSource implements DataSource {
     @Inject
     public FireBaseDataSource(){
 
+    }
+
+    @Override
+    public Observable<Configuration> getConfiguration() {
+        return null;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.riteshkumarsingh.capstone_stage2.data.source.remote;
 
+import com.example.riteshkumarsingh.capstone_stage2.data.models.configuration.Configuration;
 import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.Movies;
 import com.example.riteshkumarsingh.capstone_stage2.data.source.DataSource;
 import com.example.riteshkumarsingh.capstone_stage2.di.scope.ActivityScope;
@@ -22,6 +23,11 @@ public class RemoteDataSource implements DataSource{
     @Inject
     public RemoteDataSource(ApiService apiService) {
         this.mApiService = apiService;
+    }
+
+    @Override
+    public Observable<Configuration> getConfiguration() {
+        return mApiService.getConfiguration();
     }
 
     @Override
