@@ -6,6 +6,8 @@ package com.example.riteshkumarsingh.capstone_stage2.constants;
 
 public final class Constants {
 
+    public static final String SERVICE_END_POINT = "https://api.themoviedb.org/3/";
+
     public static final int EXPLORE_COUNT = 2;
     public static final int MOVIES_TV_COUNT = 4;
     public static final int CELEB_COUNT = 1;
