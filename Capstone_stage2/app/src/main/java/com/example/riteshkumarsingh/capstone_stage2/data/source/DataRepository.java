@@ -6,6 +6,7 @@ import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.Movies;
 import com.example.riteshkumarsingh.capstone_stage2.data.source.firebase.FireBaseDataSource;
 import com.example.riteshkumarsingh.capstone_stage2.data.source.remote.RemoteDataSource;
 import com.example.riteshkumarsingh.capstone_stage2.di.scope.ActivityScope;
+import com.example.riteshkumarsingh.capstone_stage2.di.scope.FragmentScope;
 
 import java.util.Map;
 
@@ -20,7 +21,7 @@ import rx.Observable;
 
 // TODO - Add a flag or something to determine, the firebase source or remote source.
 
-@ActivityScope
+@FragmentScope
 public class DataRepository implements DataSource{
 
     private DataSource mRemoteDataSource;
