@@ -5,4 +5,6 @@ package com.example.riteshkumarsingh.capstone_stage2.core;
  */
 
 public interface BasePresenter {
+    void start();
+    void stop();
 }
