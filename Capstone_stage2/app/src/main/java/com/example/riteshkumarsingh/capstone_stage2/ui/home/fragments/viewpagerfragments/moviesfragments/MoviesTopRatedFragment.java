@@ -11,6 +11,9 @@ import com.example.riteshkumarsingh.capstone_stage2.R;
 import com.example.riteshkumarsingh.capstone_stage2.core.BaseFragment;
 import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.Movies;
 import com.example.riteshkumarsingh.capstone_stage2.ui.home.fragments.viewpagerfragments.MovieView;
+import com.example.riteshkumarsingh.capstone_stage2.ui.home.presenter.MoviesTopRatedPresenter;
+
+import javax.inject.Inject;
 
 /**
  * Created by riteshkumarsingh on 18/04/17.
@@ -18,9 +21,13 @@ import com.example.riteshkumarsingh.capstone_stage2.ui.home.fragments.viewpagerf
 
 public class MoviesTopRatedFragment extends BaseFragment implements MovieView {
 
+    @Inject
+    MoviesTopRatedPresenter mMoviesTopRatedPresenter;
+
     public static Fragment newInstance() {
         return new MoviesTopRatedFragment();
     }
+
 
     @Nullable
     @Override
