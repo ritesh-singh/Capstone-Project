@@ -18,6 +18,7 @@ import com.example.riteshkumarsingh.capstone_stage2.R;
 import com.example.riteshkumarsingh.capstone_stage2.core.BaseFragment;
 import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.Movies;
 import com.example.riteshkumarsingh.capstone_stage2.ui.home.adapters.MovieRecyclerViewAdapter;
+import com.example.riteshkumarsingh.capstone_stage2.ui.home.fragments.viewpagerfragments.MovieView;
 import com.example.riteshkumarsingh.capstone_stage2.ui.home.presenter.MoviesPopularPresenter;
 import com.example.riteshkumarsingh.capstone_stage2.utils.Utils;
 
@@ -32,7 +33,7 @@ import butterknife.ButterKnife;
  * Created by riteshkumarsingh on 18/04/17.
  */
 
-public class MoviesPopularFragment extends BaseFragment implements MoviePopularView {
+public class MoviesPopularFragment extends BaseFragment implements MovieView {
 
     @Inject
     MoviesPopularPresenter moviesPopularPresenter;
@@ -102,7 +103,7 @@ public class MoviesPopularFragment extends BaseFragment implements MoviePopularV
 
         initRecyclerView();
 
-        moviesPopularPresenter.fetchPopularMovies(Utils.getMovieOptions("1"));
+        moviesPopularPresenter.fetchMovies(Utils.getMovieOptions("1"));
     }
 
 

@@ -1,4 +1,4 @@
-package com.example.riteshkumarsingh.capstone_stage2.ui.home.fragments.viewpagerfragments.moviesfragments;
+package com.example.riteshkumarsingh.capstone_stage2.ui.home.fragments.viewpagerfragments;
 
 import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.Movies;
 
@@ -6,7 +6,7 @@ import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.Movies;
  * Created by riteshkumarsingh on 20/04/17.
  */
 
-public interface MoviePopularView {
+public interface MovieView {
     void showProgressBar();
     void hideProgressBar();
     void showResult(Movies movies);
