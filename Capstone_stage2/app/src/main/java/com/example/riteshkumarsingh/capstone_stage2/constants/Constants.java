@@ -18,6 +18,9 @@ public final class Constants {
     public static final int TVSERIES_LAUNCH_MODE = 2;
     public static final int CELEBS_LAUNCH_MODE = 3;
 
+    public static final String API_KEY = "api_key";
+    public static final String PAGE_NO = "page";
+
     /**
      * Explore Screen Page Titles
      */

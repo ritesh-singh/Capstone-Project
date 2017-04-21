@@ -3,7 +3,11 @@ package com.example.riteshkumarsingh.capstone_stage2.utils;
 
 import android.net.Uri;
 
+import com.example.riteshkumarsingh.capstone_stage2.BuildConfig;
 import com.example.riteshkumarsingh.capstone_stage2.constants.Constants;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by riteshkumarsingh on 20/04/17.
@@ -11,14 +15,21 @@ import com.example.riteshkumarsingh.capstone_stage2.constants.Constants;
 
 public final class Utils {
 
-    public static Uri getImageUri(final String size, final String file_path) {
+    public static String getImagePath(final String size, final String file_path) {
         Uri imageUri = Uri.parse(Constants.IMAGE_END_POINT)
                 .buildUpon()
                 .appendPath(size)
-                .appendPath(file_path)
                 .build();
 
-        return imageUri;
+        return new StringBuilder(imageUri.toString())
+                .append(file_path).toString();
+    }
+
+    public static Map<String,String> getMovieOptions(String page_no){
+        Map<String,String> options = new HashMap<>();
+        options.put(Constants.API_KEY, BuildConfig.APP_KEY);
+        options.put(Constants.PAGE_NO,page_no);
+        return options;
     }
 
     public static String getPosterImageSize(final float density) {

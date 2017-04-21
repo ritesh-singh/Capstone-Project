@@ -5,7 +5,9 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import com.example.riteshkumarsingh.capstone_stage2.R;
@@ -77,6 +79,12 @@ public class HomeActivity extends BaseActivity {
         }
     }
 
+
+    /**
+     *
+     */
+    private int mDrawerMenuClickedItem = -1;
+
     /**
      * Setting up the drawer content and adding NavigationOnItemSelectedListener.
      */
@@ -86,11 +94,36 @@ public class HomeActivity extends BaseActivity {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         menuItem.setChecked(true);
+                        mDrawerMenuClickedItem = menuItem.getItemId();
                         mDrawerLayout.closeDrawers();
-                        addFragmentView(menuItem.getItemId());
                         return true;
                     }
                 });
+
+
+        mDrawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                if (mDrawerMenuClickedItem != -1)
+                    addFragmentView(mDrawerMenuClickedItem);
+                mDrawerMenuClickedItem = -1;
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+
+            }
+        });
     }
 
     @Override
