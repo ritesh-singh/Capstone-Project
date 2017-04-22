@@ -1,5 +1,6 @@
 package com.example.riteshkumarsingh.capstone_stage2.ui.home.fragments.viewpagerfragments;
 
+import android.content.res.Configuration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -8,6 +9,9 @@ import android.widget.ProgressBar;
 import com.example.riteshkumarsingh.capstone_stage2.BasicUseCaseComponents;
 import com.example.riteshkumarsingh.capstone_stage2.R;
 import com.example.riteshkumarsingh.capstone_stage2.core.BaseFragment;
+import com.example.riteshkumarsingh.capstone_stage2.ui.home.adapters.MovieRecyclerViewAdapter;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 
@@ -29,6 +33,22 @@ public abstract class MovieBaseFragment extends BaseFragment implements MovieVie
     protected BasicUseCaseComponents mBasicUseCaseComponents;
 
     protected GridLayoutManager mLayoutManager;
+
+    protected MovieRecyclerViewAdapter mMovieRecyclerViewAdapter;
+
+    protected void initRecyclerView(){
+        mRecyclerView.setHasFixedSize(true);
+        mMovieRecyclerViewAdapter = new MovieRecyclerViewAdapter(new ArrayList<>());
+
+        if (getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            mLayoutManager = new GridLayoutManager(getContext(),SPAN_COUNT_PORTRAIT);
+        } else {
+            mLayoutManager = new GridLayoutManager(getContext(),SPAN_COUNT_LANDSCAPE);
+        }
+
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mMovieRecyclerViewAdapter);
+    }
 
     @Override
     public void onDestroyView() {
