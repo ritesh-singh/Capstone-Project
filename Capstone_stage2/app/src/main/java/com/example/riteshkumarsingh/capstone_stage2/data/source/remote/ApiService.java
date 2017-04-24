@@ -1,10 +1,13 @@
 package com.example.riteshkumarsingh.capstone_stage2.data.source.remote;
 
+import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.MovieDetails;
+import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.MovieVideos;
 import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.Movies;
 
 import java.util.Map;
 
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 import rx.Observable;
 
@@ -28,5 +31,11 @@ public interface ApiService {
 
     @GET("movie/latest")
     Observable<Movies> getLatestMovies(@QueryMap Map<String, String> options);
+
+    @GET("movie/{movie_id}")
+    Observable<MovieDetails> getMovieDetails(@Path("movie_id") int movie_id);
+
+    @GET("movie/{movie_id}/videos")
+    Observable<MovieVideos> getMovieVideos(@Path("movie_id") int movie_id);
 
 }

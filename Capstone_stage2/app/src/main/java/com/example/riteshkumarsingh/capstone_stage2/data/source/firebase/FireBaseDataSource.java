@@ -1,5 +1,7 @@
 package com.example.riteshkumarsingh.capstone_stage2.data.source.firebase;
 
+import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.MovieDetails;
+import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.MovieVideos;
 import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.Movies;
 import com.example.riteshkumarsingh.capstone_stage2.data.source.DataSource;
 import com.example.riteshkumarsingh.capstone_stage2.di.scope.FragmentScope;
@@ -44,6 +46,16 @@ public class FireBaseDataSource implements DataSource {
 
     @Override
     public Observable<Movies> getLatestMovies(Map<String, String> options) {
+        return null;
+    }
+
+    @Override
+    public Observable<MovieDetails> getMovieDetails(int movie_id) {
+        return null;
+    }
+
+    @Override
+    public Observable<MovieVideos> getMovieVideos(int movie_id) {
         return null;
     }
 }

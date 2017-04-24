@@ -2,6 +2,8 @@ package com.example.riteshkumarsingh.capstone_stage2.data.source;
 
 import android.support.annotation.NonNull;
 
+import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.MovieDetails;
+import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.MovieVideos;
 import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.Movies;
 import com.example.riteshkumarsingh.capstone_stage2.data.source.firebase.FireBaseDataSource;
 import com.example.riteshkumarsingh.capstone_stage2.data.source.remote.RemoteDataSource;
@@ -57,5 +59,15 @@ public class DataRepository implements DataSource{
     @Override
     public Observable<Movies> getLatestMovies(Map<String, String> options) {
         return mRemoteDataSource.getLatestMovies(options);
+    }
+
+    @Override
+    public Observable<MovieDetails> getMovieDetails(int movie_id) {
+        return mRemoteDataSource.getMovieDetails(movie_id);
+    }
+
+    @Override
+    public Observable<MovieVideos> getMovieVideos(int movie_id) {
+        return mRemoteDataSource.getMovieVideos(movie_id);
     }
 }

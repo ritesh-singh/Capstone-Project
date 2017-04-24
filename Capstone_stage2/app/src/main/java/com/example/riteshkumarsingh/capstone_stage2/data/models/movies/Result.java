@@ -37,6 +37,28 @@ public class Result {
     private Double mVoteAverage;
     @SerializedName("vote_count")
     private Long mVoteCount;
+    @SerializedName("budget")
+    private Long mBudget;
+    @SerializedName("genres")
+    private List<Genre> mGenreList;
+    @SerializedName("homepage")
+    private String mHomePage;
+    @SerializedName("imdb_id")
+    private Long mImdbId;
+    @SerializedName("production_companies")
+    private List<ProductionCompany> mProductionCompanyList;
+    @SerializedName("production_countries")
+    private List<ProductionCountry> mProductionCountryList;
+    @SerializedName("revenue")
+    private Long mRevenue;
+    @SerializedName("runtime")
+    private Long mRuntime;
+    @SerializedName("spoken_languages")
+    private List<SpokenLanguage> mSpokenLanguageList;
+    @SerializedName("status")
+    private String mStatus;
+    @SerializedName("tagline")
+    private String mTagLine;
 
     public Boolean getAdult() {
         return mAdult;
@@ -150,4 +172,203 @@ public class Result {
         mVoteCount = voteCount;
     }
 
+    public Boolean getmAdult() {
+        return mAdult;
+    }
+
+    public void setmAdult(Boolean mAdult) {
+        this.mAdult = mAdult;
+    }
+
+    public String getmBackdropPath() {
+        return mBackdropPath;
+    }
+
+    public void setmBackdropPath(String mBackdropPath) {
+        this.mBackdropPath = mBackdropPath;
+    }
+
+    public List<Long> getmGenreIds() {
+        return mGenreIds;
+    }
+
+    public void setmGenreIds(List<Long> mGenreIds) {
+        this.mGenreIds = mGenreIds;
+    }
+
+    public Long getmId() {
+        return mId;
+    }
+
+    public void setmId(Long mId) {
+        this.mId = mId;
+    }
+
+    public String getmOriginalLanguage() {
+        return mOriginalLanguage;
+    }
+
+    public void setmOriginalLanguage(String mOriginalLanguage) {
+        this.mOriginalLanguage = mOriginalLanguage;
+    }
+
+    public String getmOriginalTitle() {
+        return mOriginalTitle;
+    }
+
+    public void setmOriginalTitle(String mOriginalTitle) {
+        this.mOriginalTitle = mOriginalTitle;
+    }
+
+    public String getmOverview() {
+        return mOverview;
+    }
+
+    public void setmOverview(String mOverview) {
+        this.mOverview = mOverview;
+    }
+
+    public Double getmPopularity() {
+        return mPopularity;
+    }
+
+    public void setmPopularity(Double mPopularity) {
+        this.mPopularity = mPopularity;
+    }
+
+    public String getmPosterPath() {
+        return mPosterPath;
+    }
+
+    public void setmPosterPath(String mPosterPath) {
+        this.mPosterPath = mPosterPath;
+    }
+
+    public String getmReleaseDate() {
+        return mReleaseDate;
+    }
+
+    public void setmReleaseDate(String mReleaseDate) {
+        this.mReleaseDate = mReleaseDate;
+    }
+
+    public String getmTitle() {
+        return mTitle;
+    }
+
+    public void setmTitle(String mTitle) {
+        this.mTitle = mTitle;
+    }
+
+    public Boolean getmVideo() {
+        return mVideo;
+    }
+
+    public void setmVideo(Boolean mVideo) {
+        this.mVideo = mVideo;
+    }
+
+    public Double getmVoteAverage() {
+        return mVoteAverage;
+    }
+
+    public void setmVoteAverage(Double mVoteAverage) {
+        this.mVoteAverage = mVoteAverage;
+    }
+
+    public Long getmVoteCount() {
+        return mVoteCount;
+    }
+
+    public void setmVoteCount(Long mVoteCount) {
+        this.mVoteCount = mVoteCount;
+    }
+
+    public Long getmBudget() {
+        return mBudget;
+    }
+
+    public void setmBudget(Long mBudget) {
+        this.mBudget = mBudget;
+    }
+
+    public List<Genre> getmGenreList() {
+        return mGenreList;
+    }
+
+    public void setmGenreList(List<Genre> mGenreList) {
+        this.mGenreList = mGenreList;
+    }
+
+    public String getmHomePage() {
+        return mHomePage;
+    }
+
+    public void setmHomePage(String mHomePage) {
+        this.mHomePage = mHomePage;
+    }
+
+    public Long getmImdbId() {
+        return mImdbId;
+    }
+
+    public void setmImdbId(Long mImdbId) {
+        this.mImdbId = mImdbId;
+    }
+
+    public List<ProductionCompany> getmProductionCompanyList() {
+        return mProductionCompanyList;
+    }
+
+    public void setmProductionCompanyList(List<ProductionCompany> mProductionCompanyList) {
+        this.mProductionCompanyList = mProductionCompanyList;
+    }
+
+    public List<ProductionCountry> getmProductionCountryList() {
+        return mProductionCountryList;
+    }
+
+    public void setmProductionCountryList(List<ProductionCountry> mProductionCountryList) {
+        this.mProductionCountryList = mProductionCountryList;
+    }
+
+    public Long getmRevenue() {
+        return mRevenue;
+    }
+
+    public void setmRevenue(Long mRevenue) {
+        this.mRevenue = mRevenue;
+    }
+
+    public Long getmRuntime() {
+        return mRuntime;
+    }
+
+    public void setmRuntime(Long mRuntime) {
+        this.mRuntime = mRuntime;
+    }
+
+    public List<SpokenLanguage> getmSpokenLanguageList() {
+        return mSpokenLanguageList;
+    }
+
+    public void setmSpokenLanguageList(List<SpokenLanguage> mSpokenLanguageList) {
+        this.mSpokenLanguageList = mSpokenLanguageList;
+    }
+
+    public String getmStatus() {
+        return mStatus;
+    }
+
+    public void setmStatus(String mStatus) {
+        this.mStatus = mStatus;
+    }
+
+    public String getmTagLine() {
+        return mTagLine;
+    }
+
+    public void setmTagLine(String mTagLine) {
+        this.mTagLine = mTagLine;
+    }
 }
