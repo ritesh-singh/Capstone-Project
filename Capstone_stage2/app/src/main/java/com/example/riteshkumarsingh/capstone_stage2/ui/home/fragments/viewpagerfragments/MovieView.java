@@ -11,4 +11,5 @@ public interface MovieView {
     void hideProgressBar();
     void showResult(Movies movies);
     void showError();
+    void onMovieItemClick(Long movie_id);
 }

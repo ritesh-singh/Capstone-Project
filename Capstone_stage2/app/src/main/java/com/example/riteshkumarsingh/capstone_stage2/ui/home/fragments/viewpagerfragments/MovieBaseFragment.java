@@ -1,5 +1,6 @@
 package com.example.riteshkumarsingh.capstone_stage2.ui.home.fragments.viewpagerfragments;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +10,7 @@ import android.widget.ProgressBar;
 import com.example.riteshkumarsingh.capstone_stage2.BasicUseCaseComponents;
 import com.example.riteshkumarsingh.capstone_stage2.R;
 import com.example.riteshkumarsingh.capstone_stage2.core.BaseFragment;
+import com.example.riteshkumarsingh.capstone_stage2.ui.detail.DetailActivity;
 import com.example.riteshkumarsingh.capstone_stage2.ui.home.adapters.MovieRecyclerViewAdapter;
 
 import java.util.ArrayList;
@@ -79,5 +81,12 @@ public abstract class MovieBaseFragment extends BaseFragment implements MovieVie
     public void hideProgressBar() {
         showRecyclerView();
         mProgressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onMovieItemClick(Long movie_id) {
+        Intent detailActivityIntent = new Intent(getActivity(), DetailActivity.class);
+        startActivity(detailActivityIntent);
+
     }
 }

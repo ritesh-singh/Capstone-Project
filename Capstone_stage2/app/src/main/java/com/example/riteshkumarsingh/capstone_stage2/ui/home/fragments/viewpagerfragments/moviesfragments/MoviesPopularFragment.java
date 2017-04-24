@@ -79,4 +79,16 @@ public class MoviesPopularFragment extends MovieBaseFragment {
     public void showError() {
 
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        moviesPopularPresenter.start();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        moviesPopularPresenter.stop();
+    }
 }

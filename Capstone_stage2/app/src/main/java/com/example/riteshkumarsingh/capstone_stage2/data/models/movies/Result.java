@@ -172,203 +172,91 @@ public class Result {
         mVoteCount = voteCount;
     }
 
-    public Boolean getmAdult() {
-        return mAdult;
-    }
-
-    public void setmAdult(Boolean mAdult) {
-        this.mAdult = mAdult;
-    }
-
-    public String getmBackdropPath() {
-        return mBackdropPath;
-    }
-
-    public void setmBackdropPath(String mBackdropPath) {
-        this.mBackdropPath = mBackdropPath;
-    }
-
-    public List<Long> getmGenreIds() {
-        return mGenreIds;
-    }
-
-    public void setmGenreIds(List<Long> mGenreIds) {
-        this.mGenreIds = mGenreIds;
-    }
-
-    public Long getmId() {
-        return mId;
-    }
-
-    public void setmId(Long mId) {
-        this.mId = mId;
-    }
-
-    public String getmOriginalLanguage() {
-        return mOriginalLanguage;
-    }
-
-    public void setmOriginalLanguage(String mOriginalLanguage) {
-        this.mOriginalLanguage = mOriginalLanguage;
-    }
-
-    public String getmOriginalTitle() {
-        return mOriginalTitle;
-    }
-
-    public void setmOriginalTitle(String mOriginalTitle) {
-        this.mOriginalTitle = mOriginalTitle;
-    }
-
-    public String getmOverview() {
-        return mOverview;
-    }
-
-    public void setmOverview(String mOverview) {
-        this.mOverview = mOverview;
-    }
-
-    public Double getmPopularity() {
-        return mPopularity;
-    }
-
-    public void setmPopularity(Double mPopularity) {
-        this.mPopularity = mPopularity;
-    }
-
-    public String getmPosterPath() {
-        return mPosterPath;
-    }
-
-    public void setmPosterPath(String mPosterPath) {
-        this.mPosterPath = mPosterPath;
-    }
-
-    public String getmReleaseDate() {
-        return mReleaseDate;
-    }
-
-    public void setmReleaseDate(String mReleaseDate) {
-        this.mReleaseDate = mReleaseDate;
-    }
-
-    public String getmTitle() {
-        return mTitle;
-    }
-
-    public void setmTitle(String mTitle) {
-        this.mTitle = mTitle;
-    }
-
-    public Boolean getmVideo() {
-        return mVideo;
-    }
-
-    public void setmVideo(Boolean mVideo) {
-        this.mVideo = mVideo;
-    }
-
-    public Double getmVoteAverage() {
-        return mVoteAverage;
-    }
-
-    public void setmVoteAverage(Double mVoteAverage) {
-        this.mVoteAverage = mVoteAverage;
-    }
-
-    public Long getmVoteCount() {
-        return mVoteCount;
-    }
-
-    public void setmVoteCount(Long mVoteCount) {
-        this.mVoteCount = mVoteCount;
-    }
-
-    public Long getmBudget() {
+    public Long getBudget() {
         return mBudget;
     }
 
-    public void setmBudget(Long mBudget) {
-        this.mBudget = mBudget;
+    public void setBudget(Long budget) {
+        this.mBudget = budget;
     }
 
-    public List<Genre> getmGenreList() {
+    public List<Genre> getGenreList() {
         return mGenreList;
     }
 
-    public void setmGenreList(List<Genre> mGenreList) {
-        this.mGenreList = mGenreList;
+    public void setGenreList(List<Genre> genreList) {
+        this.mGenreList = genreList;
     }
 
-    public String getmHomePage() {
+    public String getHomePage() {
         return mHomePage;
     }
 
-    public void setmHomePage(String mHomePage) {
-        this.mHomePage = mHomePage;
+    public void setHomePage(String homePage) {
+        this.mHomePage = homePage;
     }
 
-    public Long getmImdbId() {
+    public Long getImdbId() {
         return mImdbId;
     }
 
-    public void setmImdbId(Long mImdbId) {
-        this.mImdbId = mImdbId;
+    public void setImdbId(Long imdbId) {
+        this.mImdbId = imdbId;
     }
 
-    public List<ProductionCompany> getmProductionCompanyList() {
+    public List<ProductionCompany> getProductionCompanyList() {
         return mProductionCompanyList;
     }
 
-    public void setmProductionCompanyList(List<ProductionCompany> mProductionCompanyList) {
-        this.mProductionCompanyList = mProductionCompanyList;
+    public void setProductionCompanyList(List<ProductionCompany> productionCompanyList) {
+        this.mProductionCompanyList = productionCompanyList;
     }
 
-    public List<ProductionCountry> getmProductionCountryList() {
+    public List<ProductionCountry> getProductionCountryList() {
         return mProductionCountryList;
     }
 
-    public void setmProductionCountryList(List<ProductionCountry> mProductionCountryList) {
-        this.mProductionCountryList = mProductionCountryList;
+    public void setProductionCountryList(List<ProductionCountry> productionCountryList) {
+        this.mProductionCountryList = productionCountryList;
     }
 
-    public Long getmRevenue() {
+    public Long getRevenue() {
         return mRevenue;
     }
 
-    public void setmRevenue(Long mRevenue) {
-        this.mRevenue = mRevenue;
+    public void setRevenue(Long revenue) {
+        this.mRevenue = revenue;
     }
 
-    public Long getmRuntime() {
+    public Long getRuntime() {
         return mRuntime;
     }
 
-    public void setmRuntime(Long mRuntime) {
-        this.mRuntime = mRuntime;
+    public void setRuntime(Long runtime) {
+        this.mRuntime = runtime;
     }
 
-    public List<SpokenLanguage> getmSpokenLanguageList() {
+    public List<SpokenLanguage> getSpokenLanguageList() {
         return mSpokenLanguageList;
     }
 
-    public void setmSpokenLanguageList(List<SpokenLanguage> mSpokenLanguageList) {
-        this.mSpokenLanguageList = mSpokenLanguageList;
+    public void setSpokenLanguageList(List<SpokenLanguage> spokenLanguageList) {
+        this.mSpokenLanguageList = spokenLanguageList;
     }
 
-    public String getmStatus() {
+    public String getStatus() {
         return mStatus;
     }
 
-    public void setmStatus(String mStatus) {
-        this.mStatus = mStatus;
+    public void setStatus(String status) {
+        this.mStatus = status;
     }
 
-    public String getmTagLine() {
+    public String getTagLine() {
         return mTagLine;
     }
 
-    public void setmTagLine(String mTagLine) {
-        this.mTagLine = mTagLine;
+    public void setmTagLine(String tagLine) {
+        this.mTagLine = tagLine;
     }
 }

@@ -47,5 +47,4 @@ public class MoviesPopularPresenter extends MoviesBasePresenter {
                     }
                 });
     }
-
 }

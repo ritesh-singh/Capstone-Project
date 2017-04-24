@@ -78,4 +78,16 @@ public class MoviesTopRatedFragment extends MovieBaseFragment{
     public void showError() {
 
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mMoviesTopRatedPresenter.start();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mMoviesTopRatedPresenter.stop();
+    }
 }

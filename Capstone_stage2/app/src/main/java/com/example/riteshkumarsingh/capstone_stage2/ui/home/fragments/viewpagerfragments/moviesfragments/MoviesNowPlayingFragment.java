@@ -80,4 +80,16 @@ public class MoviesNowPlayingFragment extends MovieBaseFragment {
     public void showError() {
 
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mMoviesNowPlayingPresenter.start();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mMoviesNowPlayingPresenter.stop();
+    }
 }

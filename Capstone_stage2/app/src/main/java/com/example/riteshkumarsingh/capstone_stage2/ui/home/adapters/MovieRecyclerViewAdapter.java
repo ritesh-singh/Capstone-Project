@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.riteshkumarsingh.capstone_stage2.R;
+import com.example.riteshkumarsingh.capstone_stage2.bus.RxBus;
 import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.Result;
 import com.example.riteshkumarsingh.capstone_stage2.utils.ImageUtil;
 import com.example.riteshkumarsingh.capstone_stage2.utils.UiUtils;
@@ -17,6 +18,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by riteshkumarsingh on 20/04/17.
@@ -56,6 +58,8 @@ public class MovieRecyclerViewAdapter extends
                         Utils.getImagePath(Utils.getPosterImageSize(UiUtils.getScreenDensity(mContext)),
                                 result.getPosterPath()),
                         holder.mPosterImageView);
+
+        holder.mPosterImageView.setTag(result.getId());
     }
 
     @Override
@@ -71,6 +75,12 @@ public class MovieRecyclerViewAdapter extends
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
+        }
+
+        @OnClick(R.id.iv_poster)
+        public void onPosterClick(View view){
+            Long movieId = Long.valueOf(view.getId());
+            RxBus.getInstance().send(movieId);
         }
     }
 }

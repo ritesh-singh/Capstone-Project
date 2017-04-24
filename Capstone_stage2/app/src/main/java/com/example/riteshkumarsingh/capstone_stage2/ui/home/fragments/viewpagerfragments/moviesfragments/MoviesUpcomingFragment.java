@@ -78,4 +78,16 @@ public class MoviesUpcomingFragment extends MovieBaseFragment {
     public void showError() {
 
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mMoviesUpComingPresenter.start();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mMoviesUpComingPresenter.stop();
+    }
 }
