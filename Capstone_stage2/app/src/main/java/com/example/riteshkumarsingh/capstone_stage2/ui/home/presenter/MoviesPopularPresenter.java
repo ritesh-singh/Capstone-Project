@@ -1,5 +1,6 @@
 package com.example.riteshkumarsingh.capstone_stage2.ui.home.presenter;
 
+import com.example.riteshkumarsingh.capstone_stage2.constants.Constants;
 import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.Movies;
 import com.example.riteshkumarsingh.capstone_stage2.di.scope.FragmentScope;
 import com.example.riteshkumarsingh.capstone_stage2.domain.usecase.GetPopularMovies;
@@ -26,6 +27,41 @@ public class MoviesPopularPresenter extends MoviesBasePresenter {
         this.getPopularMovies = getPopularMovies;
     }
 
+    @Override
+    public void start() {
+        super.start();
+        unregisterRxBus();
+        registerRxBus();
+    }
+
+    @Override
+    public void stop() {
+        super.stop();
+        unregisterRxBus();
+    }
+
+    @Override
+    protected void registerRxBus() {
+        mRxBusSubscription = mRxBus.toObserverable()
+                .subscribe(o -> {
+                    if (o instanceof String){
+                        String[] str  = ((String) o).split(";");
+                        if (str[0].equalsIgnoreCase(Constants.MOVIES_POPULAR)){
+                            onMovieItemClick(Long.valueOf(str[1]));
+                        }
+                    }
+                });
+    }
+
+    @Override
+    protected void unregisterRxBus() {
+        RxUtils.unSubscribe(mRxBusSubscription);
+    }
+
+    @Override
+    protected void onMovieItemClick(Long movie_id) {
+        mMovieView.onMovieItemClick(movie_id);
+    }
 
     @Override
     public void fetchMovies(Map<String, String> options) {

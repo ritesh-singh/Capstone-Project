@@ -68,7 +68,9 @@ public class MoviesFragment extends NavViewsBaseFragment {
                         Constants.MOVIE_LAUNCH_MODE,
                         Arrays.asList(mMoviesTabArray));
 
+        mViewPager.setOffscreenPageLimit(3);
         mViewPager.setAdapter(customFragmentStatePagerAdapter);
+
     }
 
     @Override

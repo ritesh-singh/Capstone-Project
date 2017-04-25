@@ -1,5 +1,6 @@
 package com.example.riteshkumarsingh.capstone_stage2.ui.home.presenter;
 
+import com.example.riteshkumarsingh.capstone_stage2.constants.Constants;
 import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.Movies;
 import com.example.riteshkumarsingh.capstone_stage2.domain.usecase.GetNowPlayingMovies;
 import com.example.riteshkumarsingh.capstone_stage2.domain.usecase.GetUpComingMovies;
@@ -44,6 +45,42 @@ public class MoviesNowPlayingPresenter extends MoviesBasePresenter {
                         mMovieView.showError();
                     }
                 });
+    }
+
+    @Override
+    public void start() {
+        super.start();
+        unregisterRxBus();
+        registerRxBus();
+    }
+
+    @Override
+    public void stop() {
+        super.stop();
+        unregisterRxBus();
+    }
+
+    @Override
+    protected void registerRxBus() {
+        mRxBusSubscription = mRxBus.toObserverable()
+                .subscribe(o -> {
+                    if (o instanceof String){
+                        String[] str  = ((String) o).split(";");
+                        if (str[0].equalsIgnoreCase(Constants.MOVIES_NOW_PLAYING)){
+                            onMovieItemClick(Long.valueOf(str[1]));
+                        }
+                    }
+                });
+    }
+
+    @Override
+    protected void unregisterRxBus() {
+        RxUtils.unSubscribe(mRxBusSubscription);
+    }
+
+    @Override
+    protected void onMovieItemClick(Long movie_id) {
+        mMovieView.onMovieItemClick(movie_id);
     }
 
 }

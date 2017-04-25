@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import com.example.riteshkumarsingh.capstone_stage2.R;
 import com.example.riteshkumarsingh.capstone_stage2.bus.RxBus;
+import com.example.riteshkumarsingh.capstone_stage2.constants.MovieSections;
 import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.Result;
 import com.example.riteshkumarsingh.capstone_stage2.utils.ImageUtil;
 import com.example.riteshkumarsingh.capstone_stage2.utils.UiUtils;
@@ -30,8 +31,11 @@ public class MovieRecyclerViewAdapter extends
     private List<Result> mResults;
     private Context mContext;
 
-    public MovieRecyclerViewAdapter(List<Result> results) {
+    private String mMovieCategory;
+
+    public MovieRecyclerViewAdapter(List<Result> results,@MovieSections String movieCategory) {
         this.mResults = results;
+        this.mMovieCategory = movieCategory;
     }
 
 
@@ -79,8 +83,9 @@ public class MovieRecyclerViewAdapter extends
 
         @OnClick(R.id.iv_poster)
         public void onPosterClick(View view){
-            Long movieId = Long.valueOf(view.getId());
-            RxBus.getInstance().send(movieId);
+            StringBuilder stringBuilder = new StringBuilder(mMovieCategory);
+            stringBuilder.append(";").append(view.getId());
+            RxBus.getInstance().send(stringBuilder.toString());
         }
     }
 }

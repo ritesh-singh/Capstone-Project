@@ -31,9 +31,11 @@ public abstract class MoviesBasePresenter extends BasePresenter {
         super.stop();
     }
 
-//    private void onMovieItemClick(final Long movie_id){
-//        mMovieView.onMovieItemClick(movie_id);
-//    }
+    protected abstract void registerRxBus();
+    protected abstract void unregisterRxBus();
+
+    protected abstract void onMovieItemClick(final Long movie_id);
+
 
     protected abstract void fetchMovies(final Map<String,String> options);
 }

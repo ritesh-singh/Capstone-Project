@@ -9,6 +9,8 @@ import android.widget.ProgressBar;
 
 import com.example.riteshkumarsingh.capstone_stage2.BasicUseCaseComponents;
 import com.example.riteshkumarsingh.capstone_stage2.R;
+import com.example.riteshkumarsingh.capstone_stage2.constants.Constants;
+import com.example.riteshkumarsingh.capstone_stage2.constants.MovieSections;
 import com.example.riteshkumarsingh.capstone_stage2.core.BaseFragment;
 import com.example.riteshkumarsingh.capstone_stage2.ui.detail.DetailActivity;
 import com.example.riteshkumarsingh.capstone_stage2.ui.home.adapters.MovieRecyclerViewAdapter;
@@ -38,9 +40,10 @@ public abstract class MovieBaseFragment extends BaseFragment implements MovieVie
 
     protected MovieRecyclerViewAdapter mMovieRecyclerViewAdapter;
 
-    protected void initRecyclerView(){
+    protected void initRecyclerView(@MovieSections String movieSection){
         mRecyclerView.setHasFixedSize(true);
-        mMovieRecyclerViewAdapter = new MovieRecyclerViewAdapter(new ArrayList<>());
+        mMovieRecyclerViewAdapter = new MovieRecyclerViewAdapter(new ArrayList<>(),
+                movieSection);
 
         if (getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             mLayoutManager = new GridLayoutManager(getContext(),SPAN_COUNT_PORTRAIT);

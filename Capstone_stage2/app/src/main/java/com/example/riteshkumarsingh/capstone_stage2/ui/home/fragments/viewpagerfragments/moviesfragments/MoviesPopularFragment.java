@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.example.riteshkumarsingh.capstone_stage2.DaggerBasicUseCaseComponents;
 import com.example.riteshkumarsingh.capstone_stage2.MainApplication;
 import com.example.riteshkumarsingh.capstone_stage2.R;
+import com.example.riteshkumarsingh.capstone_stage2.constants.Constants;
 import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.Movies;
 import com.example.riteshkumarsingh.capstone_stage2.ui.home.fragments.viewpagerfragments.MovieBaseFragment;
 import com.example.riteshkumarsingh.capstone_stage2.ui.home.presenter.MoviesPopularPresenter;
@@ -65,7 +66,7 @@ public class MoviesPopularFragment extends MovieBaseFragment {
         moviesPopularPresenter.setMoviePopularView(this);
         mUnbinder = ButterKnife.bind(this,view);
 
-        initRecyclerView();
+        initRecyclerView(Constants.MOVIES_POPULAR);
 
         moviesPopularPresenter.fetchMovies(Utils.getMovieOptions("1"));
     }
