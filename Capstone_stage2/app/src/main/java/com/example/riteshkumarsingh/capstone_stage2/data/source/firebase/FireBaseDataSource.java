@@ -50,12 +50,12 @@ public class FireBaseDataSource implements DataSource {
     }
 
     @Override
-    public Observable<MovieDetails> getMovieDetails(int movie_id) {
+    public Observable<MovieDetails> getMovieDetails(Long movie_id) {
         return null;
     }
 
     @Override
-    public Observable<MovieVideos> getMovieVideos(int movie_id) {
+    public Observable<MovieVideos> getMovieVideos(Long movie_id) {
         return null;
     }
 }

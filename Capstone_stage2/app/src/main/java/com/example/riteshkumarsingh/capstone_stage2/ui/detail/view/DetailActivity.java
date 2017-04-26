@@ -1,4 +1,4 @@
-package com.example.riteshkumarsingh.capstone_stage2.ui.detail;
+package com.example.riteshkumarsingh.capstone_stage2.ui.detail.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

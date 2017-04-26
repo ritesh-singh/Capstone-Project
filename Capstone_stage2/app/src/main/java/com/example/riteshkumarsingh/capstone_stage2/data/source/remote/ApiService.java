@@ -33,9 +33,9 @@ public interface ApiService {
     Observable<Movies> getLatestMovies(@QueryMap Map<String, String> options);
 
     @GET("movie/{movie_id}")
-    Observable<MovieDetails> getMovieDetails(@Path("movie_id") int movie_id);
+    Observable<MovieDetails> getMovieDetails(@Path("movie_id") Long movie_id);
 
     @GET("movie/{movie_id}/videos")
-    Observable<MovieVideos> getMovieVideos(@Path("movie_id") int movie_id);
+    Observable<MovieVideos> getMovieVideos(@Path("movie_id") Long movie_id);
 
 }

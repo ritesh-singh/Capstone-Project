@@ -76,7 +76,7 @@ public class MoviesTopRatedFragment extends MovieBaseFragment{
     }
 
     @Override
-    public void showError() {
+    public void showError(String message) {
 
     }
 

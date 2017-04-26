@@ -24,7 +24,7 @@
 
         <activity android:name=".ui.home.activities.HomeActivity"/>
 
-        <activity android:name=".ui.detail.DetailActivity"
+        <activity android:name=".ui.detail.view.DetailActivity"
             android:parentActivityName=".ui.home.activities.HomeActivity" />
 
     </application>

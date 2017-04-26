@@ -18,6 +18,6 @@ public interface DataSource {
     Observable<Movies> getNowPlayingMovies(Map<String,String> options);
     Observable<Movies> getUpComingMovies(Map<String,String> options);
     Observable<Movies> getLatestMovies(Map<String,String> options);
-    Observable<MovieDetails> getMovieDetails(int movie_id);
-    Observable<MovieVideos> getMovieVideos(int movie_id);
+    Observable<MovieDetails> getMovieDetails(Long movie_id);
+    Observable<MovieVideos> getMovieVideos(Long movie_id);
 }

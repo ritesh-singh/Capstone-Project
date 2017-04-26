@@ -77,7 +77,7 @@ public class MoviesPopularFragment extends MovieBaseFragment {
     }
 
     @Override
-    public void showError() {
+    public void showError(String message) {
 
     }
 

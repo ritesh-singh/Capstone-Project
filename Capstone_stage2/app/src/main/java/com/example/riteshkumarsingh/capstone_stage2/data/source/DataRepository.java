@@ -62,12 +62,12 @@ public class DataRepository implements DataSource{
     }
 
     @Override
-    public Observable<MovieDetails> getMovieDetails(int movie_id) {
+    public Observable<MovieDetails> getMovieDetails(Long movie_id) {
         return mRemoteDataSource.getMovieDetails(movie_id);
     }
 
     @Override
-    public Observable<MovieVideos> getMovieVideos(int movie_id) {
+    public Observable<MovieVideos> getMovieVideos(Long movie_id) {
         return mRemoteDataSource.getMovieVideos(movie_id);
     }
 }

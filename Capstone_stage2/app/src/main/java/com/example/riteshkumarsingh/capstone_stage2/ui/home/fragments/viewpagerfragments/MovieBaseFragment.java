@@ -9,10 +9,10 @@ import android.widget.ProgressBar;
 
 import com.example.riteshkumarsingh.capstone_stage2.BasicUseCaseComponents;
 import com.example.riteshkumarsingh.capstone_stage2.R;
-import com.example.riteshkumarsingh.capstone_stage2.constants.Constants;
 import com.example.riteshkumarsingh.capstone_stage2.constants.MovieSections;
 import com.example.riteshkumarsingh.capstone_stage2.core.BaseFragment;
-import com.example.riteshkumarsingh.capstone_stage2.ui.detail.DetailActivity;
+import com.example.riteshkumarsingh.capstone_stage2.ui.detail.view.DetailActivity;
+import com.example.riteshkumarsingh.capstone_stage2.ui.detail.view.DetailActivityFragment;
 import com.example.riteshkumarsingh.capstone_stage2.ui.home.adapters.MovieRecyclerViewAdapter;
 
 import java.util.ArrayList;
@@ -89,7 +89,7 @@ public abstract class MovieBaseFragment extends BaseFragment implements MovieVie
     @Override
     public void onMovieItemClick(Long movie_id) {
         Intent detailActivityIntent = new Intent(getActivity(), DetailActivity.class);
+        detailActivityIntent.putExtra(DetailActivityFragment.INTENT_MOVIE_ID_KEY,movie_id);
         startActivity(detailActivityIntent);
-
     }
 }

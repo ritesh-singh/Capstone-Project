@@ -79,7 +79,7 @@ public class MoviesPopularPresenter extends MoviesBasePresenter {
                     @Override
                     public void call(Throwable throwable) {
                         mMovieView.hideProgressBar();
-                        mMovieView.showError();
+                        mMovieView.showError(throwable.getMessage());
                     }
                 });
     }
