@@ -25,8 +25,7 @@
         <activity android:name=".ui.home.activities.HomeActivity"/>
 
         <activity android:name=".ui.detail.DetailActivity"
-            android:parentActivityName=".ui.home.activities.HomeActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:parentActivityName=".ui.home.activities.HomeActivity" />
 
     </application>
 

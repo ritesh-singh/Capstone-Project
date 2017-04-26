@@ -5,6 +5,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -31,6 +32,8 @@ public class HomeActivity extends BaseActivity {
     @BindView(R.id.nav_view)
     NavigationView mNavigationView;
 
+    @BindView(R.id.toolbar)
+    Toolbar mToolBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +42,10 @@ public class HomeActivity extends BaseActivity {
 
         mUnbinder = ButterKnife.bind(this);
 
-        final ActionBar ab = getSupportActionBar();
-        ab.setHomeAsUpIndicator(R.drawable.ic_menu);
-        ab.setDisplayHomeAsUpEnabled(true);
+        mToolBar.setNavigationIcon(R.drawable.ic_menu);
+        setSupportActionBar(mToolBar);
+
+        setTitle("Dekho");
 
         setUpDrawerContent();
     }
