@@ -15,21 +15,26 @@
             android:layout_height="220dp"
             app:layout_scrollFlags="scroll|enterAlways">
 
+            <!-- Backdrop Image -->
             <ImageView
                 android:id="@+id/iv_back_drop"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
+                android:contentDescription="@string/backdrop_image"
                 android:src="@drawable/backdrop" />
 
+            <!-- Play Button -->
             <ImageView
                 android:id="@+id/iv_play_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:contentDescription="@string/play_button"
                 android:layout_centerInParent="true"
                 android:src="@drawable/ic_menu" />
 
+            <!-- Poster Image -->
             <ImageView
                 android:id="@+id/iv_poster"
                 android:layout_width="wrap_content"
@@ -37,8 +42,10 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="100dp"
                 android:adjustViewBounds="true"
+                android:contentDescription="@string/poster_image"
                 android:src="@drawable/poster" />
 
+            <!-- Movie title container -->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

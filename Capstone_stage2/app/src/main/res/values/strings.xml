@@ -24,5 +24,8 @@
 
 
     <string name="celeb_popular">Popular</string>
+    <string name="backdrop_image">Backdrop Image</string>
+    <string name="play_button">Play Button</string>
+    <string name="poster_image">Poster Image</string>
 
 </resources>
