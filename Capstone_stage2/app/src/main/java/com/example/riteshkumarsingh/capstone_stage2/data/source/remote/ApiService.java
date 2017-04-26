@@ -8,6 +8,7 @@ import java.util.Map;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 import rx.Observable;
 
@@ -33,9 +34,11 @@ public interface ApiService {
     Observable<Movies> getLatestMovies(@QueryMap Map<String, String> options);
 
     @GET("movie/{movie_id}")
-    Observable<MovieDetails> getMovieDetails(@Path("movie_id") Long movie_id);
+    Observable<MovieDetails> getMovieDetails(@Path("movie_id") Long movie_id,
+                                             @Query("api_key") String apiKey);
 
     @GET("movie/{movie_id}/videos")
-    Observable<MovieVideos> getMovieVideos(@Path("movie_id") Long movie_id);
+    Observable<MovieVideos> getMovieVideos(@Path("movie_id") Long movie_id,
+                                           @Query("api_key") String apiKey);
 
 }

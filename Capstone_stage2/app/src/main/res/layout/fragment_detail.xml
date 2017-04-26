@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -21,18 +22,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
                 android:contentDescription="@string/backdrop_image"
-                android:src="@drawable/backdrop" />
+                android:scaleType="centerCrop"
+                tools:src="@drawable/backdrop" />
 
             <!-- Play Button -->
             <ImageView
                 android:id="@+id/iv_play_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/play_button"
                 android:layout_centerInParent="true"
-                android:src="@drawable/ic_menu" />
+                android:contentDescription="@string/play_button"
+                android:tint="#afa8a8"
+                android:src="@drawable/ic_play_circle_outline" />
 
             <!-- Poster Image -->
             <ImageView
@@ -43,7 +45,7 @@
                 android:layout_marginTop="100dp"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/poster_image"
-                android:src="@drawable/poster" />
+                tools:src="@drawable/poster" />
 
             <!-- Movie title container -->
             <RelativeLayout
@@ -58,7 +60,8 @@
                     android:id="@+id/tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="LOGAN"
+                    tools:text="LOGAN"
+                    android:textAllCaps="true"
                     android:textColor="@color/white" />
             </RelativeLayout>
 
@@ -73,5 +76,7 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
     </android.support.v4.widget.NestedScrollView>
+
+    <include layout="@layout/common_progress_bar" />
 
 </android.support.design.widget.CoordinatorLayout>

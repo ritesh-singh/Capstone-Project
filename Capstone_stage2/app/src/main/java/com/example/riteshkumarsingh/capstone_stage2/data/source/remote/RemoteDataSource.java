@@ -1,5 +1,6 @@
 package com.example.riteshkumarsingh.capstone_stage2.data.source.remote;
 
+import com.example.riteshkumarsingh.capstone_stage2.BuildConfig;
 import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.MovieDetails;
 import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.MovieVideos;
 import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.Movies;
@@ -54,11 +55,11 @@ public class RemoteDataSource implements DataSource{
 
     @Override
     public Observable<MovieDetails> getMovieDetails(Long movie_id) {
-        return mApiService.getMovieDetails(movie_id);
+        return mApiService.getMovieDetails(movie_id, BuildConfig.APP_KEY);
     }
 
     @Override
     public Observable<MovieVideos> getMovieVideos(Long movie_id) {
-        return mApiService.getMovieVideos(movie_id);
+        return mApiService.getMovieVideos(movie_id,BuildConfig.APP_KEY);
     }
 }

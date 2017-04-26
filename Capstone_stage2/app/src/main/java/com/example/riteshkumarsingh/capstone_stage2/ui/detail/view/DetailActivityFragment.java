@@ -2,10 +2,13 @@ package com.example.riteshkumarsingh.capstone_stage2.ui.detail.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.riteshkumarsingh.capstone_stage2.BasicUseCaseComponents;
@@ -16,6 +19,11 @@ import com.example.riteshkumarsingh.capstone_stage2.core.BaseFragment;
 import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.MovieDetails;
 import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.MovieVideos;
 import com.example.riteshkumarsingh.capstone_stage2.ui.detail.presenter.DetailFragmentPresenter;
+import com.example.riteshkumarsingh.capstone_stage2.utils.ImageUtil;
+import com.example.riteshkumarsingh.capstone_stage2.utils.UiUtils;
+import com.example.riteshkumarsingh.capstone_stage2.utils.Utils;
+
+import java.util.logging.Logger;
 
 import javax.inject.Inject;
 
@@ -47,7 +55,13 @@ public class DetailActivityFragment extends BaseFragment
     ImageView mPlayButtonView;
 
     @BindView(R.id.tv_title)
-    TextView mTextView;
+    TextView mTitle;
+
+    @BindView(R.id.progress_bar)
+    ProgressBar mProgressBar;
+
+    @BindView(R.id.coordinator_layout)
+    CoordinatorLayout mRootContainer;
 
     public static DetailActivityFragment newInstance() {
         return new DetailActivityFragment();
@@ -65,13 +79,10 @@ public class DetailActivityFragment extends BaseFragment
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initDagger();
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
         mMovieId = getActivity().getIntent().getExtras().getLong(INTENT_MOVIE_ID_KEY);
     }
+
+
 
     @Nullable
     @Override
@@ -82,6 +93,12 @@ public class DetailActivityFragment extends BaseFragment
         mUnbinder = ButterKnife.bind(this, rootView);
         mDetailFragmentPresenter.setDetailView(this);
         return rootView;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mDetailFragmentPresenter.fetchMovieDetailsFromRepo(mMovieId);
     }
 
     @Override
@@ -96,18 +113,56 @@ public class DetailActivityFragment extends BaseFragment
     }
 
     @Override
-    public void onMovieDetailResponse(MovieDetails movieDetails) {
+    public void onStart() {
+        super.onStart();
+        mDetailFragmentPresenter.start();
+    }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        mDetailFragmentPresenter.stop();
+    }
+
+    private void bindDataWithUI(MovieDetails movieDetails){
+        ImageUtil
+                .getImageUtilInstance()
+                .loadImage(getContext(),
+                        Utils.getImagePath(Utils.getPosterImageSize(UiUtils.getScreenDensity(getContext())),
+                                movieDetails.getBackdropPath()),
+                        mBackDropImageView);
+        ImageUtil.getImageUtilInstance()
+                .loadImage(getContext(),
+                        Utils.getImagePath(Utils.getPosterImageSize(UiUtils.getScreenDensity(getContext())),
+                                movieDetails.getPosterPath()),
+                        mPosterImageView);
+
+        mTitle.setText(movieDetails.getTitle());
+    }
+
+    @Override
+    public void onMovieDetailResponse(MovieDetails movieDetails) {
+        bindDataWithUI(movieDetails);
+    }
+
+    private void hideRootContainer(){
+        mRootContainer.setVisibility(View.INVISIBLE);
+    }
+
+    private void showRootContainer(){
+        mRootContainer.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showProgressBar() {
-
+        hideRootContainer();
+        mProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-
+        mProgressBar.setVisibility(View.GONE);
+        showRootContainer();
     }
 
     @Override

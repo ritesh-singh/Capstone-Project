@@ -84,7 +84,7 @@ public class MovieRecyclerViewAdapter extends
         @OnClick(R.id.iv_poster)
         public void onPosterClick(View view){
             StringBuilder stringBuilder = new StringBuilder(mMovieCategory);
-            stringBuilder.append(";").append(view.getId());
+            stringBuilder.append(";").append(view.getTag());
             RxBus.getInstance().send(stringBuilder.toString());
         }
     }
