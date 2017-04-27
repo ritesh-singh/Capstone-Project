@@ -2,6 +2,8 @@ package com.example.riteshkumarsingh.capstone_stage2.ui.home.fragments.viewpager
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.ProgressBar;
 
 import com.example.riteshkumarsingh.capstone_stage2.BasicUseCaseComponents;
 import com.example.riteshkumarsingh.capstone_stage2.R;
+import com.example.riteshkumarsingh.capstone_stage2.common.GridViewItemDecorator;
 import com.example.riteshkumarsingh.capstone_stage2.constants.MovieSections;
 import com.example.riteshkumarsingh.capstone_stage2.core.BaseFragment;
 import com.example.riteshkumarsingh.capstone_stage2.ui.detail.view.DetailActivity;
@@ -53,6 +56,8 @@ public abstract class MovieBaseFragment extends BaseFragment implements MovieVie
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mMovieRecyclerViewAdapter);
+
+        mRecyclerView.addItemDecoration(new GridViewItemDecorator());
     }
 
     @Override
