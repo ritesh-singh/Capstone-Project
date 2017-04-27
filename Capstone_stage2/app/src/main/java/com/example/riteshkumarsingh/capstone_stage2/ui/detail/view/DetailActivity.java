@@ -2,6 +2,9 @@ package com.example.riteshkumarsingh.capstone_stage2.ui.detail.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.transition.Slide;
+import android.view.Gravity;
+import android.view.animation.LinearInterpolator;
 
 import com.example.riteshkumarsingh.capstone_stage2.R;
 import com.example.riteshkumarsingh.capstone_stage2.core.BaseActivity;
@@ -26,6 +29,12 @@ public class DetailActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+        Slide slide = new Slide(Gravity.RIGHT);
+        slide.setInterpolator(new LinearInterpolator());
+        getWindow().setEnterTransition(slide);
+        getWindow().setReturnTransition(slide);
+
         mUnbinder = ButterKnife.bind(this);
 
         addDetailFragment();

@@ -1,9 +1,11 @@
 package com.example.riteshkumarsingh.capstone_stage2.ui.home.fragments.viewpagerfragments;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -99,6 +101,7 @@ public abstract class MovieBaseFragment extends BaseFragment implements MovieVie
     public void onMovieItemClick(Long movie_id) {
         Intent detailActivityIntent = new Intent(getActivity(), DetailActivity.class);
         detailActivityIntent.putExtra(DetailActivityFragment.INTENT_MOVIE_ID_KEY,movie_id);
-        startActivity(detailActivityIntent);
+        Bundle bundle = ActivityOptions.makeSceneTransitionAnimation(getActivity()).toBundle();
+        startActivity(detailActivityIntent,bundle);
     }
 }

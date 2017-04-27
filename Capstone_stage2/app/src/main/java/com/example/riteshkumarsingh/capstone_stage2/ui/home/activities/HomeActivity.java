@@ -5,8 +5,12 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
+import android.transition.Explode;
+import android.transition.Slide;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 
 import com.example.riteshkumarsingh.capstone_stage2.R;
@@ -39,11 +43,16 @@ public class HomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        Slide slide = new Slide(Gravity.LEFT);
+        slide.setInterpolator(new LinearInterpolator());
+        getWindow().setExitTransition(slide);
+        getWindow().setReenterTransition(slide);
+
         mUnbinder = ButterKnife.bind(this);
 
         mToolBar.setNavigationIcon(R.drawable.ic_menu);
         setSupportActionBar(mToolBar);
-
 
         setUpDrawerContent();
 
