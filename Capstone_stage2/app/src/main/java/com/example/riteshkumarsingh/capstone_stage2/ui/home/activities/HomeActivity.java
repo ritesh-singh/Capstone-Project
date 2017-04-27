@@ -44,14 +44,19 @@ public class HomeActivity extends BaseActivity {
         mToolBar.setNavigationIcon(R.drawable.ic_menu);
         setSupportActionBar(mToolBar);
 
-        setTitle("Dekho");
 
         setUpDrawerContent();
 
+
+        setToolBarTitle(getString(R.string.movies));
         mNavigationView.setCheckedItem(R.id.nav_movies);
         addFragmentView(R.id.nav_movies);
     }
 
+
+    private void setToolBarTitle(String title){
+        setTitle(title);
+    }
 
     /**
      *
@@ -64,21 +69,25 @@ public class HomeActivity extends BaseActivity {
                 ActivityUtils.addAndReplaceFragment(ExploreFragment.newInstance(),
                         R.id.main_content_view_container,
                         getSupportFragmentManager());
+                setToolBarTitle(getString(R.string.explore));
                 break;
             case R.id.nav_movies:
                 ActivityUtils.addAndReplaceFragment(MoviesFragment.newInstance(),
                         R.id.main_content_view_container,
                         getSupportFragmentManager());
+                setToolBarTitle(getString(R.string.movies));
                 break;
             case R.id.nav_tv_shows:
                 ActivityUtils.addAndReplaceFragment(TvFragment.newInstance(),
                         R.id.main_content_view_container,
                         getSupportFragmentManager());
+                setToolBarTitle(getString(R.string.tv));
                 break;
             case R.id.nav_celebs:
                 ActivityUtils.addAndReplaceFragment(CelebsFragment.newInstance(),
                         R.id.main_content_view_container,
                         getSupportFragmentManager());
+                setToolBarTitle(getString(R.string.celebs));
                 break;
             default:
                 return;

@@ -68,6 +68,7 @@ public class MoviesPopularFragment extends MovieBaseFragment {
 
         initRecyclerView(Constants.MOVIES_POPULAR);
 
+        // TODO - Implement pagination
         moviesPopularPresenter.fetchMovies(Utils.getMovieOptions("1"));
     }
 
