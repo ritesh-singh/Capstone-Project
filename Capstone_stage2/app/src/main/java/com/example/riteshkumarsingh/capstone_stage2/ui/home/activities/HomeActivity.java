@@ -47,6 +47,9 @@ public class HomeActivity extends BaseActivity {
         setTitle("Dekho");
 
         setUpDrawerContent();
+
+        mNavigationView.setCheckedItem(R.id.nav_movies);
+        addFragmentView(R.id.nav_movies);
     }
 
 
