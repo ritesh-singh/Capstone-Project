@@ -66,11 +66,15 @@ public abstract class MovieBaseFragment extends BaseFragment implements MovieVie
         mBasicUseCaseComponents = null;
     }
 
-    public void showRecyclerView(){
+    public void showRecyclerView() {
+        if (mRecyclerView == null)
+            return;
         mRecyclerView.setVisibility(View.VISIBLE);
     }
 
-    public void hideRecyclerView(){
+    public void hideRecyclerView() {
+        if (mRecyclerView == null)
+            return;
         mRecyclerView.setVisibility(View.INVISIBLE);
     }
 
