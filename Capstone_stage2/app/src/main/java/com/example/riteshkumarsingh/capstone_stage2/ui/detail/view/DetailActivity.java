@@ -26,11 +26,11 @@ public class DetailActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-
         mUnbinder = ButterKnife.bind(this);
 
         addDetailFragment();
     }
+
 
     @Override
     protected void onDestroy() {
