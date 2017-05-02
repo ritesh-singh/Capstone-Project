@@ -60,6 +60,15 @@ public class DetailActivityFragment extends BaseFragment
     @BindView(R.id.tv_title)
     TextView mTitle;
 
+    @BindView(R.id.tv_year)
+    TextView mTvYear;
+
+    @BindView(R.id.tv_genre)
+    TextView mTvGenre;
+
+    @BindView(R.id.tv_runtime)
+    TextView mTvRunTime;
+
     @BindView(R.id.progress_bar)
     ProgressBar mProgressBar;
 
@@ -68,6 +77,9 @@ public class DetailActivityFragment extends BaseFragment
 
     @BindView(R.id.rv_videos)
     RecyclerView mTrailersRecyclerView;
+
+    @BindView(R.id.tv_overview)
+    TextView mTvOverView;
 
     public static DetailActivityFragment newInstance() {
         return new DetailActivityFragment();
@@ -153,7 +165,10 @@ public class DetailActivityFragment extends BaseFragment
                         mPosterImageView);
 
         mTitle.setText(movieDetails.getTitle());
-
+        mTvYear.setText(movieDetails.getReleaseDate());
+        mTvGenre.setText(Utils.convertStringToPipeSeparatedString(movieDetails.getGenres()));
+        mTvRunTime.setText(movieDetails.getRuntime() + " mins");
+        mTvOverView.setText(movieDetails.getOverview());
         initTrailerRecyclerView(movieVideos.getVideoResults());
     }
 

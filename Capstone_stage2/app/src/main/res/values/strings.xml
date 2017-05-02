@@ -27,5 +27,6 @@
     <string name="backdrop_image">Backdrop Image</string>
     <string name="play_button">Play Button</string>
     <string name="poster_image">Poster Image</string>
+    <string name="trailer_s">Trailer(s)</string>
 
 </resources>

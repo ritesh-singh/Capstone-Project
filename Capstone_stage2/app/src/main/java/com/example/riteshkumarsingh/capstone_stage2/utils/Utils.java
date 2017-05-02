@@ -5,8 +5,10 @@ import android.net.Uri;
 
 import com.example.riteshkumarsingh.capstone_stage2.BuildConfig;
 import com.example.riteshkumarsingh.capstone_stage2.constants.Constants;
+import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.Genre;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -48,5 +50,20 @@ public final class Utils {
         }
 
         return imageSize;
+    }
+
+    public static String convertStringToPipeSeparatedString(List<Genre> genreList){
+        if (genreList.size() == 1)
+            return genreList.get(0).getName();
+
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < genreList.size(); i++) {
+            stringBuilder.append(genreList.get(i).getName());
+            if (i == genreList.size() - 1 )
+                continue;
+            stringBuilder.append(" | ");
+        }
+
+        return stringBuilder.toString();
     }
 }
