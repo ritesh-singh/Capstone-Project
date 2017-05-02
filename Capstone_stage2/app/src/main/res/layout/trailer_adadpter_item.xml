@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:padding="16dp">
+
     <TextView
         android:id="@+id/tv_name"
-        android:text="Belle Motion Poster"
-        android:textSize="14sp"
-        android:textColor="@color/white"
-        android:maxLines="1"
-        android:ellipsize="end"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="Belle Motion Poster"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+
     <TextView
         android:id="@+id/tv_type"
         android:layout_width="wrap_content"
-        android:text="Trailer"
-        android:maxLines="1"
-        android:ellipsize="end"
+        android:layout_height="wrap_content"
         android:layout_below="@id/tv_name"
         android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="Trailer"
         android:textColor="@color/white"
-        android:textSize="14sp"
-        android:layout_height="wrap_content" />
+        android:textSize="14sp" />
 
     <ImageView
         android:id="@+id/iv_play_button"
@@ -30,7 +33,6 @@
         android:layout_height="50dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:tint="@color/white"
         android:layout_marginLeft="8dp"
-        android:src="@drawable/ic_play_circle_outline"/>
+        android:src="@drawable/ic_play_circle_filled"/>
 </RelativeLayout>
