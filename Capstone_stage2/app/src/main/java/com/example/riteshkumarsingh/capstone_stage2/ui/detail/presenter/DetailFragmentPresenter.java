@@ -86,6 +86,10 @@ public class DetailFragmentPresenter extends BasePresenter {
 
     }
 
+    public void onPlayButtonClick(String key){
+        mDetailView.launchYouTubeVideo(key);
+    }
+
     public class MovieAndVideo {
 
         public MovieDetails movieDetails;

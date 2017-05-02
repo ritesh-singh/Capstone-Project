@@ -1,8 +1,6 @@
 package com.example.riteshkumarsingh.capstone_stage2.ui.detail.view;
 
 import com.example.riteshkumarsingh.capstone_stage2.core.BaseView;
-import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.MovieDetails;
-import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.MovieVideos;
 import com.example.riteshkumarsingh.capstone_stage2.ui.detail.presenter.DetailFragmentPresenter;
 
 /**
@@ -11,4 +9,5 @@ import com.example.riteshkumarsingh.capstone_stage2.ui.detail.presenter.DetailFr
 
 public interface DetailView extends BaseView{
     void onMovieAndVideoResponse(DetailFragmentPresenter.MovieAndVideo movieAndVideo);
+    void launchYouTubeVideo(String key);
 }

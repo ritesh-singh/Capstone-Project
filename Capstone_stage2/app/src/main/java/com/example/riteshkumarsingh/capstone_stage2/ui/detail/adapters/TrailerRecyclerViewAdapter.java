@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.riteshkumarsingh.capstone_stage2.R;
 import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.VideoResult;
+import com.example.riteshkumarsingh.capstone_stage2.ui.detail.presenter.DetailFragmentPresenter;
 
 import java.util.List;
 
@@ -23,10 +24,13 @@ import butterknife.OnClick;
 public class TrailerRecyclerViewAdapter
         extends RecyclerView.Adapter<TrailerRecyclerViewAdapter.ViewHolder> {
 
-    List<VideoResult> mMovieVideoResults;
+    private List<VideoResult> mMovieVideoResults;
+    private DetailFragmentPresenter mDetailFragmentPresenter;
 
-    public TrailerRecyclerViewAdapter(List<VideoResult> resultList) {
+    public TrailerRecyclerViewAdapter(List<VideoResult> resultList,
+                                      DetailFragmentPresenter detailFragmentPresenter) {
         this.mMovieVideoResults = resultList;
+        this.mDetailFragmentPresenter = detailFragmentPresenter;
     }
 
     @Override
@@ -67,7 +71,7 @@ public class TrailerRecyclerViewAdapter
 
         @OnClick(R.id.iv_play_button)
         public void onPlayButtonClick(View view){
-
+            mDetailFragmentPresenter.onPlayButtonClick((String) view.getTag());
         }
     }
 }

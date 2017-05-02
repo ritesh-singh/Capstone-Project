@@ -1,5 +1,8 @@
 package com.example.riteshkumarsingh.capstone_stage2.ui.detail.view;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
@@ -18,13 +21,15 @@ import com.example.riteshkumarsingh.capstone_stage2.MainApplication;
 import com.example.riteshkumarsingh.capstone_stage2.R;
 import com.example.riteshkumarsingh.capstone_stage2.core.BaseFragment;
 import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.MovieDetails;
+import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.MovieVideos;
+import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.VideoResult;
 import com.example.riteshkumarsingh.capstone_stage2.ui.detail.adapters.TrailerRecyclerViewAdapter;
 import com.example.riteshkumarsingh.capstone_stage2.ui.detail.presenter.DetailFragmentPresenter;
 import com.example.riteshkumarsingh.capstone_stage2.utils.ImageUtil;
 import com.example.riteshkumarsingh.capstone_stage2.utils.UiUtils;
 import com.example.riteshkumarsingh.capstone_stage2.utils.Utils;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -125,17 +130,16 @@ public class DetailActivityFragment extends BaseFragment
         mDetailFragmentPresenter.stop();
     }
 
-
-    private void initTrailerRecyclerView(){
+    private void initTrailerRecyclerView(List<VideoResult> videoResults){
         mTrailersRecyclerView.setHasFixedSize(true);
         TrailerRecyclerViewAdapter trailerRecyclerViewAdapter =
-                new TrailerRecyclerViewAdapter(new ArrayList<>());
+                new TrailerRecyclerViewAdapter(videoResults,mDetailFragmentPresenter);
         mTrailersRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mTrailersRecyclerView.setAdapter(trailerRecyclerViewAdapter);
-
     }
 
-    private void bindDataWithUI(MovieDetails movieDetails){
+    private void bindDataWithUI(MovieDetails movieDetails,
+                                MovieVideos movieVideos){
         ImageUtil
                 .getImageUtilInstance()
                 .loadImage(getContext(),
@@ -150,7 +154,7 @@ public class DetailActivityFragment extends BaseFragment
 
         mTitle.setText(movieDetails.getTitle());
 
-        initTrailerRecyclerView();
+        initTrailerRecyclerView(movieVideos.getVideoResults());
     }
 
     private void hideRootContainer(){
@@ -180,6 +184,20 @@ public class DetailActivityFragment extends BaseFragment
 
     @Override
     public void onMovieAndVideoResponse(DetailFragmentPresenter.MovieAndVideo movieAndVideo) {
-        bindDataWithUI(movieAndVideo.movieDetails);
+        bindDataWithUI(movieAndVideo.movieDetails,
+                movieAndVideo.movieVideos);
+    }
+
+    @Override
+    public void launchYouTubeVideo(String key) {
+        Intent appIntent = new Intent(Intent.ACTION_VIEW,
+                Uri.parse("vnd.youtube:" + key));
+        Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                Uri.parse("http://www.youtube.com/watch?v=" + key));
+        try {
+            startActivity(appIntent);
+        } catch (ActivityNotFoundException ex) {
+            startActivity(webIntent);
+        }
     }
 }
