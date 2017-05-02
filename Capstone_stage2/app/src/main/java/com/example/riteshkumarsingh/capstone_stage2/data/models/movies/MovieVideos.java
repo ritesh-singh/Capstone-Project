@@ -12,7 +12,7 @@ public class MovieVideos {
     @SerializedName("id")
     private Long mId;
     @SerializedName("results")
-    private List<Result> mResults;
+    private List<VideoResult> mVideoResults;
 
     public Long getId() {
         return mId;
@@ -22,12 +22,11 @@ public class MovieVideos {
         mId = id;
     }
 
-    public List<Result> getResults() {
-        return mResults;
+    public List<VideoResult> getVideoResults() {
+        return mVideoResults;
     }
 
-    public void setResults(List<Result> results) {
-        mResults = results;
+    public void setVideoResults(List<VideoResult> videoResults) {
+        this.mVideoResults = videoResults;
     }
-
 }

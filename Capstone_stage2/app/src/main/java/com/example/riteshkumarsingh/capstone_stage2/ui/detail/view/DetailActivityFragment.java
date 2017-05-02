@@ -3,7 +3,8 @@ package com.example.riteshkumarsingh.capstone_stage2.ui.detail.view;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
-import android.util.Log;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,13 +18,13 @@ import com.example.riteshkumarsingh.capstone_stage2.MainApplication;
 import com.example.riteshkumarsingh.capstone_stage2.R;
 import com.example.riteshkumarsingh.capstone_stage2.core.BaseFragment;
 import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.MovieDetails;
-import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.MovieVideos;
+import com.example.riteshkumarsingh.capstone_stage2.ui.detail.adapters.TrailerRecyclerViewAdapter;
 import com.example.riteshkumarsingh.capstone_stage2.ui.detail.presenter.DetailFragmentPresenter;
 import com.example.riteshkumarsingh.capstone_stage2.utils.ImageUtil;
 import com.example.riteshkumarsingh.capstone_stage2.utils.UiUtils;
 import com.example.riteshkumarsingh.capstone_stage2.utils.Utils;
 
-import java.util.logging.Logger;
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -51,9 +52,6 @@ public class DetailActivityFragment extends BaseFragment
     @BindView(R.id.iv_poster)
     ImageView mPosterImageView;
 
-    @BindView(R.id.iv_play_button)
-    ImageView mPlayButtonView;
-
     @BindView(R.id.tv_title)
     TextView mTitle;
 
@@ -62,6 +60,9 @@ public class DetailActivityFragment extends BaseFragment
 
     @BindView(R.id.coordinator_layout)
     CoordinatorLayout mRootContainer;
+
+    @BindView(R.id.rv_videos)
+    RecyclerView mTrailersRecyclerView;
 
     public static DetailActivityFragment newInstance() {
         return new DetailActivityFragment();
@@ -98,7 +99,7 @@ public class DetailActivityFragment extends BaseFragment
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mDetailFragmentPresenter.fetchMovieDetailsFromRepo(mMovieId);
+        mDetailFragmentPresenter.fetchMovieDetailsAndVideos(mMovieId);
     }
 
     @Override
@@ -124,6 +125,16 @@ public class DetailActivityFragment extends BaseFragment
         mDetailFragmentPresenter.stop();
     }
 
+
+    private void initTrailerRecyclerView(){
+        mTrailersRecyclerView.setHasFixedSize(true);
+        TrailerRecyclerViewAdapter trailerRecyclerViewAdapter =
+                new TrailerRecyclerViewAdapter(new ArrayList<>());
+        mTrailersRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mTrailersRecyclerView.setAdapter(trailerRecyclerViewAdapter);
+
+    }
+
     private void bindDataWithUI(MovieDetails movieDetails){
         ImageUtil
                 .getImageUtilInstance()
@@ -138,11 +149,8 @@ public class DetailActivityFragment extends BaseFragment
                         mPosterImageView);
 
         mTitle.setText(movieDetails.getTitle());
-    }
 
-    @Override
-    public void onMovieDetailResponse(MovieDetails movieDetails) {
-        bindDataWithUI(movieDetails);
+        initTrailerRecyclerView();
     }
 
     private void hideRootContainer(){
@@ -171,7 +179,7 @@ public class DetailActivityFragment extends BaseFragment
     }
 
     @Override
-    public void onMovieVideoResponse(MovieVideos movieVideos) {
-
+    public void onMovieAndVideoResponse(DetailFragmentPresenter.MovieAndVideo movieAndVideo) {
+        bindDataWithUI(movieAndVideo.movieDetails);
     }
 }

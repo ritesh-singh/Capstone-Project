@@ -26,18 +26,6 @@
                 android:scaleType="centerCrop"
                 tools:src="@drawable/backdrop" />
 
-            <!-- Play Button -->
-            <ImageView
-                android:id="@+id/iv_play_button"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:visibility="gone"
-                android:layout_marginTop="75dp"
-                android:layout_centerHorizontal="true"
-                android:contentDescription="@string/play_button"
-                android:tint="#afa8a8"
-                />
-
             <!-- Poster Image -->
             <ImageView
                 android:id="@+id/iv_poster"
@@ -55,39 +43,39 @@
                 android:layout_height="match_parent"
                 android:layout_below="@+id/iv_back_drop"
                 android:layout_marginLeft="20dp"
-                android:gravity="center_vertical"
-                android:layout_toRightOf="@id/iv_poster">
+                android:layout_toRightOf="@id/iv_poster"
+                android:gravity="center_vertical">
 
                 <TextView
                     android:id="@+id/tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="LOGAN"
-                    android:textSize="16sp"
                     android:textAllCaps="true"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    tools:text="LOGAN" />
 
                 <TextView
                     android:id="@+id/tv_year"
-                    android:layout_marginTop="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tv_title"
-                    android:textSize="14sp"
+                    android:layout_marginTop="8dp"
+                    android:text="2017"
                     android:textColor="#9e9e9e"
-                    android:text="2017"/>
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/trailer_name"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_below="@id/tv_title"
+                    android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_toRightOf="@id/tv_year"
-                    android:layout_marginLeft="8dp"
-                    android:textSize="14sp"
-                    android:textColor="#9e9e9e"
                     android:text="Trailer with Commentary"
-                    android:layout_height="wrap_content" />
+                    android:textColor="#9e9e9e"
+                    android:textSize="14sp" />
             </RelativeLayout>
 
         </RelativeLayout>
@@ -105,39 +93,58 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
                 android:id="@+id/tv_genre"
                 android:layout_width="match_parent"
-                android:textColor="#9e9e9e"
-                android:textSize="14sp"
-                android:maxLines="1"
-                android:ellipsize="end"
+                android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:layout_toLeftOf="@+id/tv_runtime"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:text="Action | Adventure | Crime"
-                android:layout_height="wrap_content" />
+                android:textColor="#9e9e9e"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tv_runtime"
                 android:layout_width="wrap_content"
-                android:text="2hrs 16 mins"
-                android:maxLines="1"
-                android:ellipsize="end"
-                android:textSize="14sp"
-                android:textColor="#9e9e9e"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_height="wrap_content" />
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="2hrs 16 mins"
+                android:textColor="#9e9e9e"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/tv_overview"
                 android:layout_width="match_parent"
-                android:textSize="14sp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_genre"
                 android:layout_marginTop="8dp"
                 android:lineSpacingExtra="2dp"
-                android:layout_below="@id/tv_genre"
-                android:textColor="@color/white"
                 android:text="A live-action adaptation of Disney's version of the classic 'Beauty and the Beast' tale of a cursed prince and a beautiful young woman who helps him break the spell."
-                android:layout_height="wrap_content" />
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_trailer_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_overview"
+                android:layout_marginTop="8dp"
+                android:text="Trailer(s)"
+                android:textColor="#9e9e9e"
+                android:textSize="16sp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_videos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_trailer_heading"
+                android:layout_marginTop="8dp"></android.support.v7.widget.RecyclerView>
+
         </RelativeLayout>
 
     </android.support.v4.widget.NestedScrollView>

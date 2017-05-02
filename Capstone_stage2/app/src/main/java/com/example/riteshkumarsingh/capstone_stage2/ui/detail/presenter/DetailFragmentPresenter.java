@@ -1,6 +1,8 @@
 package com.example.riteshkumarsingh.capstone_stage2.ui.detail.presenter;
 
 import com.example.riteshkumarsingh.capstone_stage2.core.BasePresenter;
+import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.MovieDetails;
+import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.MovieVideos;
 import com.example.riteshkumarsingh.capstone_stage2.di.scope.FragmentScope;
 import com.example.riteshkumarsingh.capstone_stage2.domain.usecase.GetMovieDetails;
 import com.example.riteshkumarsingh.capstone_stage2.domain.usecase.GetMovieVideos;
@@ -9,7 +11,9 @@ import com.example.riteshkumarsingh.capstone_stage2.utils.RxUtils;
 
 import javax.inject.Inject;
 
+import rx.Observable;
 import rx.Subscription;
+import rx.functions.Func2;
 
 /**
  * Created by riteshkumarsingh on 26/04/17.
@@ -23,18 +27,17 @@ public class DetailFragmentPresenter extends BasePresenter {
 
     private DetailView mDetailView;
 
-    private Subscription mMovieDetailSubscription;
-    private Subscription mMovieVideoSubscription;
+    private Subscription mMovieAndVideoSubscription;
 
     @Inject
     public DetailFragmentPresenter(GetMovieDetails getMovieDetails,
-                                   GetMovieVideos getMovieVideos){
+                                   GetMovieVideos getMovieVideos) {
         super();
         this.getMovieDetails = getMovieDetails;
         this.getMovieVideos = getMovieVideos;
     }
 
-    public void setDetailView(DetailView detailView){
+    public void setDetailView(DetailView detailView) {
         this.mDetailView = detailView;
     }
 
@@ -48,36 +51,52 @@ public class DetailFragmentPresenter extends BasePresenter {
         super.stop();
     }
 
-    public void fetchMovieDetailsFromRepo(Long movie_id){
-        RxUtils.unSubscribe(mMovieDetailSubscription);
+
+    public void fetchMovieDetailsAndVideos(Long movied_id) {
         mDetailView.showProgressBar();
-        mMovieDetailSubscription = getMovieDetails
-                .getMovieDetails(movie_id)
-                .compose(RxUtils.applyIOScheduler())
-                .subscribe(movieDetails -> {
+        RxUtils.unSubscribe(mMovieAndVideoSubscription);
+        Observable<MovieDetails> movieDetailsObservable =
+                getMovieDetails
+                        .getMovieDetails(movied_id)
+                        .compose(RxUtils.applyIOScheduler());
+
+        Observable<MovieVideos> movieVideosObservable =
+                getMovieVideos
+                        .getMovieVideos(movied_id)
+                        .compose(RxUtils.applyIOScheduler());
+
+        Observable<MovieAndVideo> movieAndVideoCombinedObservable =
+                Observable.zip(movieDetailsObservable, movieVideosObservable,
+                        new Func2<MovieDetails, MovieVideos, MovieAndVideo>() {
+                            @Override
+                            public MovieAndVideo call(MovieDetails movieDetails, MovieVideos movieVideos) {
+                                return new MovieAndVideo(movieDetails,
+                                        movieVideos);
+                            }
+                        });
+
+        mMovieAndVideoSubscription = movieAndVideoCombinedObservable
+                .subscribe(movieAndVideo -> {
                     mDetailView.hideProgressBar();
-                    mDetailView.onMovieDetailResponse(movieDetails);
-                }, throwable -> {
+                    mDetailView.onMovieAndVideoResponse(movieAndVideo);
+                },throwable -> {
                     mDetailView.hideProgressBar();
                     mDetailView.showError(throwable.getMessage());
                 });
-        mCompositeSubscription.add(mMovieDetailSubscription);
+
     }
 
-    private void fetchMovieVideosFromRepo(Long movie_id){
-        RxUtils.unSubscribe(mMovieVideoSubscription);
-        mDetailView.showProgressBar();
-        getMovieVideos
-                .getMovieVideos(movie_id)
-                .compose(RxUtils.applyIOScheduler())
-                .subscribe(movieVideos -> {
-                    mDetailView.hideProgressBar();
-                    mDetailView.onMovieVideoResponse(movieVideos);
-                }, throwable -> {
-                    mDetailView.hideProgressBar();
-                    mDetailView.showError(throwable.getMessage());
-                });
-        mCompositeSubscription.add(mMovieVideoSubscription);
+    public class MovieAndVideo {
+
+        public MovieDetails movieDetails;
+        public MovieVideos movieVideos;
+
+        public MovieAndVideo(MovieDetails movieDetails,
+                             MovieVideos movieVideos) {
+            this.movieDetails = movieDetails;
+            this.movieVideos = movieVideos;
+        }
+
     }
 
 }
