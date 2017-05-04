@@ -1,5 +1,6 @@
 package com.example.riteshkumarsingh.capstone_stage2;
 
+import com.example.riteshkumarsingh.capstone_stage2.data.sync.JobSchedulerService;
 import com.example.riteshkumarsingh.capstone_stage2.di.AppComponent;
 import com.example.riteshkumarsingh.capstone_stage2.di.scope.FragmentScope;
 import com.example.riteshkumarsingh.capstone_stage2.ui.detail.view.DetailActivityFragment;
@@ -22,4 +23,5 @@ public interface BasicUseCaseComponents {
     void inject(MoviesNowPlayingFragment moviesNowPlayingFragment);
     void inject(MoviesUpcomingFragment moviesUpcomingFragment);
     void inject(DetailActivityFragment detailActivityFragment);
+    void add(JobSchedulerService jobSchedulerService);
 }

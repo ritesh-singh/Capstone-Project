@@ -27,6 +27,9 @@
         <activity android:name=".ui.detail.view.DetailActivity"
             android:parentActivityName=".ui.home.activities.HomeActivity" />
 
+        <service android:name=".data.sync.JobSchedulerService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
     </application>
 
 </manifest>

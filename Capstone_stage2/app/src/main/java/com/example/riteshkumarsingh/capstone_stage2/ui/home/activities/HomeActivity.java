@@ -20,6 +20,7 @@ import com.example.riteshkumarsingh.capstone_stage2.ui.home.fragments.ExploreFra
 import com.example.riteshkumarsingh.capstone_stage2.ui.home.fragments.MoviesFragment;
 import com.example.riteshkumarsingh.capstone_stage2.ui.home.fragments.TvFragment;
 import com.example.riteshkumarsingh.capstone_stage2.utils.ActivityUtils;
+import com.example.riteshkumarsingh.capstone_stage2.utils.UiUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,11 +39,16 @@ public class HomeActivity extends BaseActivity {
     @BindView(R.id.toolbar)
     Toolbar mToolBar;
 
+    private void schedulerJobScheduler(){
+        UiUtils.scheduleJob(this);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        schedulerJobScheduler();
 
         Slide slide = new Slide(Gravity.LEFT);
         slide.setInterpolator(new LinearInterpolator());
