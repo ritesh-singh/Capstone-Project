@@ -18,6 +18,10 @@ public class Movies {
     @SerializedName("total_results")
     private Long mTotalResults;
 
+    public Movies() {
+
+    }
+
     public Long getPage() {
         return mPage;
     }

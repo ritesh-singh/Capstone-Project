@@ -68,5 +68,9 @@ public final class Constants {
     public static final String BACK_DROP_SIZE_W_780 = "w780";
     public static final String BACK_DROP_SIZE_W_1280 = "w1280";
 
+    public static final String FIREBASE_POPULAR = "popular";
+    public static final String FIREBASE_TOP_RATED = "toprated";
+    public static final String FIREBASE_NOW_SHOWING = "nowshowing";
+    public static final String FIREBASE_UP_COMING = "upcoming";
 
 }
