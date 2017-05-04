@@ -21,12 +21,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.List;
 
 import javax.inject.Inject;
 
 import rx.Observable;
 import rx.Subscription;
+import rx.subscriptions.CompositeSubscription;
 
 /**
  * Created by riteshkumarsingh on 04/05/17.
@@ -63,6 +63,8 @@ public class JobSchedulerService extends JobService {
     private BasicUseCaseComponents mBasicUseCaseComponents;
 
     private Subscription mSubscription;
+    private CompositeSubscription mCompositeSubscription;
+
 
     private DatabaseReference.CompletionListener mCompletionListener;
 
@@ -91,26 +93,49 @@ public class JobSchedulerService extends JobService {
         super.onCreate();
         initDagger();
         initFireBase();
+        mCompositeSubscription = new CompositeSubscription();
     }
 
-    private void uploadPopularMoviesToFireBase(List<Movies> moviesList){
+    private void uploadPopularMoviesToFireBase(Movies movies){
         mDataBase.child(Constants.FIREBASE_POPULAR)
-        .setValue(moviesList, mCompletionListener);
+        .setValue(movies, mCompletionListener);
     }
 
-    private void uploadTopRatedMoviesToFireBase(List<Movies> moviesList){
+    private void uploadTopRatedMoviesToFireBase(Movies movies){
         mDataBase.child(Constants.FIREBASE_TOP_RATED)
-                .setValue(moviesList, mCompletionListener);
+                .setValue(movies, mCompletionListener);
     }
 
-    private void uploadUpComingMoviesToFireBase(List<Movies> moviesList){
+    private void uploadUpComingMoviesToFireBase(Movies movies){
         mDataBase.child(Constants.FIREBASE_UP_COMING)
-                .setValue(moviesList, mCompletionListener);
+                .setValue(movies, mCompletionListener);
     }
 
-    private void uploadNowShowingMoviesToFireBase(List<Movies> moviesList){
+    private void uploadNowShowingMoviesToFireBase(Movies movies){
         mDataBase.child(Constants.FIREBASE_NOW_SHOWING)
-                .setValue(moviesList, mCompletionListener);
+                .setValue(movies, mCompletionListener);
+    }
+
+    private Subscription mMovieDetailSubscription;
+    private Subscription mMovieVideosSubscription;
+
+    private void uploadMovieDetails(Long movie_id){
+        RxUtils.unSubscribe(mMovieDetailSubscription);
+        mMovieDetailSubscription = getMovieDetails.getMovieDetails(movie_id)
+                .subscribe(movieDetails -> {
+                    mDataBase.child(Constants.FIREBASE_MOVIE_DETAILS)
+                            .setValue(movieDetails,mCompletionListener);
+                });
+    }
+
+    private void uploadMovieVideos(Long movie_id){
+        RxUtils.unSubscribe(mMovieVideosSubscription);
+        mMovieVideosSubscription = getMovieVideos
+                .getMovieVideos(movie_id)
+                .subscribe(movieVideos -> {
+                    mDataBase.child(Constants.FIREBASE_MOVIE_VIDEOS)
+                            .setValue(movieVideos,mCompletionListener);
+                });
     }
 
 
@@ -127,30 +152,31 @@ public class JobSchedulerService extends JobService {
         // If you pass in true, this will kick off the JobScheduler’s exponential backoff logic for you
 //        jobFinished(jobParameters,!success);
 
-        Observable<List<Movies>> popularMovieObservable =  getPopularMovies
+        Observable<Movies> popularMovieObservable =  getPopularMovies
                 .getMovies(Utils.getMovieOptions("1"))
-                .toList()
-                .doOnNext(moviesList -> {
-                    uploadPopularMoviesToFireBase(moviesList);
+                .doOnNext(movies -> {
+                    uploadPopularMoviesToFireBase(movies);
                 });
-        Observable<List<Movies>> topRatedMovieObservable =  getTopRatedMovies
+
+        Observable<Movies> topRatedMovieObservable =  getTopRatedMovies
                 .getMovies(Utils.getMovieOptions("1"))
-                .toList()
-                .doOnNext(moviesList -> {
-                    uploadTopRatedMoviesToFireBase(moviesList);
+                .doOnNext(movies -> {
+                    uploadTopRatedMoviesToFireBase(movies);
                 });
-        Observable<List<Movies>> nowPlayingMovieObservable = getNowPlayingMovies
+
+        Observable<Movies> nowPlayingMovieObservable = getNowPlayingMovies
                 .getMovies(Utils.getMovieOptions("1"))
-                .toList()
-                .doOnNext(moviesList -> {
-                    uploadNowShowingMoviesToFireBase(moviesList);
+                .doOnNext(movies -> {
+                    uploadNowShowingMoviesToFireBase(movies);
                 });
-        Observable<List<Movies>> upComingMovieObservable = getUpComingMovies
+
+        Observable<Movies> upComingMovieObservable = getUpComingMovies
                 .getMovies(Utils.getMovieOptions("1"))
-                .toList()
-                .doOnNext(moviesList -> {
-                    uploadUpComingMoviesToFireBase(moviesList);
+                .doOnNext(movies -> {
+                    uploadUpComingMoviesToFireBase(movies);
                 });
+
+
 
         RxUtils.unSubscribe(mSubscription);
 
@@ -158,6 +184,15 @@ public class JobSchedulerService extends JobService {
                 .mergeWith(topRatedMovieObservable)
                 .mergeWith(nowPlayingMovieObservable)
                 .mergeWith(upComingMovieObservable)
+                .flatMap(movies -> {
+                    return Observable.from(movies.getResults());
+                })
+                .map(result -> {
+                    uploadMovieDetails(result.getId());
+                    uploadMovieVideos(result.getId());
+                    return result;
+                })
+                .toList()
                 .compose(RxUtils.applyIOScheduler())
                 .subscribe(moviesList -> {
                 },throwable -> {
@@ -167,6 +202,8 @@ public class JobSchedulerService extends JobService {
                     // Passing false,as no need to re-schedule
                     jobFinished(jobParameters,false);
                 });
+
+        mCompositeSubscription.add(mSubscription);
 
     }
 
@@ -204,6 +241,8 @@ public class JobSchedulerService extends JobService {
     public void onDestroy() {
         super.onDestroy();
         mBasicUseCaseComponents = null;
+        mDataBase.removeValue(mCompletionListener);
         mDataBase = null;
+        RxUtils.clear(mCompositeSubscription);
     }
 }
