@@ -3,6 +3,8 @@ package com.example.riteshkumarsingh.capstone_stage2.di;
 import com.example.riteshkumarsingh.capstone_stage2.data.source.remote.ApiService;
 import com.example.riteshkumarsingh.capstone_stage2.di.scope.ApplicationScope;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import dagger.Module;
 import dagger.Provides;
@@ -37,7 +39,13 @@ public class NetworkModule {
 
     @Provides
     @ApplicationScope
-    public ApiService providesApiServie(Retrofit retrofit) {
+    public ApiService providesApiService(Retrofit retrofit) {
         return retrofit.create(ApiService.class);
+    }
+
+    @Provides
+    @ApplicationScope
+    public DatabaseReference providesDataBaseReference(){
+        return FirebaseDatabase.getInstance().getReference();
     }
 }

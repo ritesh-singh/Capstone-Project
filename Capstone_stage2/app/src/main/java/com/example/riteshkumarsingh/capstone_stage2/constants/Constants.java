@@ -70,7 +70,7 @@ public final class Constants {
 
     public static final String FIREBASE_POPULAR = "popular";
     public static final String FIREBASE_TOP_RATED = "toprated";
-    public static final String FIREBASE_NOW_SHOWING = "nowshowing";
+    public static final String FIREBASE_NOW_PLAYING = "nowshowing";
     public static final String FIREBASE_UP_COMING = "upcoming";
     public static final String FIREBASE_MOVIE_DETAILS = "movie_details";
     public static final String FIREBASE_MOVIE_VIDEOS = "movie_vides";

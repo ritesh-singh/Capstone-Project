@@ -19,8 +19,6 @@ import com.example.riteshkumarsingh.capstone_stage2.utils.RxUtils;
 import com.example.riteshkumarsingh.capstone_stage2.utils.Utils;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 
 import javax.inject.Inject;
 
@@ -32,8 +30,6 @@ import rx.subscriptions.CompositeSubscription;
  * Created by riteshkumarsingh on 04/05/17.
  */
 public class JobSchedulerService extends JobService {
-
-    private DatabaseReference mDataBase;
 
     @Inject
     GetPopularMovies getPopularMovies;
@@ -53,6 +49,9 @@ public class JobSchedulerService extends JobService {
     @Inject
     GetMovieVideos getMovieVideos;
 
+    @Inject
+    DatabaseReference mDatabaseReference;
+
     private BasicUseCaseComponents mBasicUseCaseComponents;
 
     private Subscription mSubscription;
@@ -70,8 +69,6 @@ public class JobSchedulerService extends JobService {
     }
 
     private void initFireBase() {
-        mDataBase = FirebaseDatabase.getInstance().getReference();
-
         mCompletionListener = new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
@@ -90,22 +87,22 @@ public class JobSchedulerService extends JobService {
     }
 
     private void uploadPopularMoviesToFireBase(Movies movies){
-        mDataBase.child(Constants.FIREBASE_POPULAR)
+        mDatabaseReference.child(Constants.FIREBASE_POPULAR)
         .setValue(movies, mCompletionListener);
     }
 
     private void uploadTopRatedMoviesToFireBase(Movies movies){
-        mDataBase.child(Constants.FIREBASE_TOP_RATED)
+        mDatabaseReference.child(Constants.FIREBASE_TOP_RATED)
                 .setValue(movies, mCompletionListener);
     }
 
     private void uploadUpComingMoviesToFireBase(Movies movies){
-        mDataBase.child(Constants.FIREBASE_UP_COMING)
+        mDatabaseReference.child(Constants.FIREBASE_UP_COMING)
                 .setValue(movies, mCompletionListener);
     }
 
     private void uploadNowShowingMoviesToFireBase(Movies movies){
-        mDataBase.child(Constants.FIREBASE_NOW_SHOWING)
+        mDatabaseReference.child(Constants.FIREBASE_NOW_PLAYING)
                 .setValue(movies, mCompletionListener);
     }
 
@@ -116,7 +113,7 @@ public class JobSchedulerService extends JobService {
         RxUtils.unSubscribe(mMovieDetailSubscription);
         mMovieDetailSubscription = getMovieDetails.getMovieDetails(movie_id)
                 .subscribe(movieDetails -> {
-                    mDataBase.child(Constants.FIREBASE_MOVIE_DETAILS)
+                    mDatabaseReference.child(Constants.FIREBASE_MOVIE_DETAILS)
                             .setValue(movieDetails,mCompletionListener);
                 });
     }
@@ -126,7 +123,7 @@ public class JobSchedulerService extends JobService {
         mMovieVideosSubscription = getMovieVideos
                 .getMovieVideos(movie_id)
                 .subscribe(movieVideos -> {
-                    mDataBase.child(Constants.FIREBASE_MOVIE_VIDEOS)
+                    mDatabaseReference.child(Constants.FIREBASE_MOVIE_VIDEOS)
                             .setValue(movieVideos,mCompletionListener);
                 });
     }
@@ -204,9 +201,8 @@ public class JobSchedulerService extends JobService {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mBasicUseCaseComponents = null;
-        mDataBase.removeValue(mCompletionListener);
-        mDataBase = null;
+        mDatabaseReference.removeValue(mCompletionListener);
         RxUtils.clear(mCompositeSubscription);
+        mBasicUseCaseComponents = null;
     }
 }

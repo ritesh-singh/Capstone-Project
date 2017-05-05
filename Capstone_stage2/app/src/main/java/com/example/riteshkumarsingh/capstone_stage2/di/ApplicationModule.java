@@ -2,6 +2,8 @@ package com.example.riteshkumarsingh.capstone_stage2.di;
 
 import android.app.Application;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 
 import com.example.riteshkumarsingh.capstone_stage2.di.scope.ApplicationScope;
 
@@ -32,5 +34,18 @@ public class ApplicationModule {
     @ApplicationScope
     Context providesContext(){
         return mContext;
+    }
+
+    @Provides
+    @ApplicationScope
+    Boolean providesNetworkConnectivityBoolean(Context context){
+        ConnectivityManager cm =
+                (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+
+        return activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+
     }
 }

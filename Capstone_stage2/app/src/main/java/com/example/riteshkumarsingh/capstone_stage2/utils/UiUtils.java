@@ -26,11 +26,11 @@ public final class UiUtils {
                 JobSchedulerService.class);
         JobInfo.Builder builder = new JobInfo.Builder(0,
                 componentName);
-//        builder.setRequiresCharging(true);
-//        builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
-//        builder.setRequiresDeviceIdle(true);
-//        builder.setPeriodic(86400000);
-        builder.setPeriodic(30000);
+        builder.setRequiresCharging(true);
+        builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
+        builder.setRequiresDeviceIdle(true);
+        builder.setPeriodic(86400000);
+//        builder.setPeriodic(30000);
 
         JobScheduler jobScheduler =
                 (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);

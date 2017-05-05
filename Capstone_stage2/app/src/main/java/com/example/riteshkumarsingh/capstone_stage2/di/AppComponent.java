@@ -1,10 +1,12 @@
 package com.example.riteshkumarsingh.capstone_stage2.di;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.example.riteshkumarsingh.capstone_stage2.data.source.remote.ApiService;
 import com.example.riteshkumarsingh.capstone_stage2.di.scope.ApplicationScope;
 import com.example.riteshkumarsingh.capstone_stage2.storage.SharedPreferenceManager;
+import com.google.firebase.database.DatabaseReference;
 
 import dagger.Component;
 
@@ -16,7 +18,6 @@ import dagger.Component;
 @Component(modules = {ApplicationModule.class,DataModule.class,NetworkModule.class})
 public interface AppComponent {
     ApiService getMovieApiService();
-
-    SharedPreferenceManager getSharedPrefManager();
-
+    DatabaseReference getDataBaseReference();
+    Boolean isNetworkActive();
 }
