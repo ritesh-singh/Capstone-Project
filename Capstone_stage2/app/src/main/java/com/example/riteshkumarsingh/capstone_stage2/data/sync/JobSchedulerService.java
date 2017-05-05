@@ -115,7 +115,10 @@ public class JobSchedulerService extends JobService {
         mMovieDetailSubscription = getMovieDetails.getMovieDetails(movie_id)
                 .subscribe(movieDetails -> {
                     mDatabaseReference.child(Constants.FIREBASE_MOVIE_DETAILS)
+                            .push()
                             .setValue(movieDetails,mCompletionListener);
+                },throwable -> {
+
                 });
     }
 
@@ -124,8 +127,12 @@ public class JobSchedulerService extends JobService {
         mMovieVideosSubscription = getMovieVideos
                 .getMovieVideos(movie_id)
                 .subscribe(movieVideos -> {
-                    mDatabaseReference.child(Constants.FIREBASE_MOVIE_VIDEOS)
+                    mDatabaseReference
+                            .child(Constants.FIREBASE_MOVIE_VIDEOS)
+                            .push()
                             .setValue(movieVideos,mCompletionListener);
+                },throwable -> {
+
                 });
     }
 

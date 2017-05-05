@@ -183,13 +183,17 @@ public class DetailActivityFragment extends BaseFragment
     @Override
     public void showProgressBar() {
         hideRootContainer();
+        if (mProgressBar == null)
+            return;
         mProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgressBar() {
-        mProgressBar.setVisibility(View.GONE);
         showRootContainer();
+        if(mProgressBar == null)
+            return;
+        mProgressBar.setVisibility(View.GONE);
     }
 
     @Override
