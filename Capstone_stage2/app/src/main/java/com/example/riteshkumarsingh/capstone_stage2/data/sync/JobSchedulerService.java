@@ -79,11 +79,21 @@ public class JobSchedulerService extends JobService {
         };
     }
 
+    private void setUseCaseBasic(){
+        getPopularMovies.setIsFromCache(false);
+        getTopRatedMovies.setIsFromCache(false);
+        getNowPlayingMovies.setIsFromCache(false);
+        getUpComingMovies.setIsFromCache(false);
+        getMovieDetails.setIsFromCache(false);
+        getMovieVideos.setIsFromCache(false);
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
         initDagger();
         initFireBase();
+        setUseCaseBasic();
         mCompositeSubscription = new CompositeSubscription();
     }
 

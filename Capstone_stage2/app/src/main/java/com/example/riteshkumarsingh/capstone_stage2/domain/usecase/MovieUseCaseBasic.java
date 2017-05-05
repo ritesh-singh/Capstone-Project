@@ -11,9 +11,8 @@ import rx.Observable;
  * Created by riteshkumarsingh on 20/04/17.
  */
 
-public abstract class MovieUseCaseBasic {
-
-    public DataRepository mDataRepository;
+public abstract class MovieUseCaseBasic extends UseCaseBasic{
 
     abstract Observable<Movies> getMovies(Map<String,String> options);
+
 }

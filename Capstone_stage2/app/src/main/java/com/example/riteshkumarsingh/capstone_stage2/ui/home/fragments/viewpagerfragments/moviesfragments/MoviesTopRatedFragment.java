@@ -16,6 +16,7 @@ import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.Movies;
 import com.example.riteshkumarsingh.capstone_stage2.ui.home.fragments.viewpagerfragments.MovieBaseFragment;
 import com.example.riteshkumarsingh.capstone_stage2.ui.home.fragments.viewpagerfragments.MovieView;
 import com.example.riteshkumarsingh.capstone_stage2.ui.home.presenter.MoviesTopRatedPresenter;
+import com.example.riteshkumarsingh.capstone_stage2.utils.UiUtils;
 import com.example.riteshkumarsingh.capstone_stage2.utils.Utils;
 
 import javax.inject.Inject;
@@ -90,5 +91,10 @@ public class MoviesTopRatedFragment extends MovieBaseFragment{
     public void onStop() {
         super.onStop();
         mMoviesTopRatedPresenter.stop();
+    }
+
+    @Override
+    public boolean isNetworkActive() {
+        return UiUtils.isNetworkActive(getContext());
     }
 }

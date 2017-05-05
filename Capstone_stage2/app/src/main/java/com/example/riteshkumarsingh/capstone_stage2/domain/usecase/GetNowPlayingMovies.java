@@ -29,4 +29,9 @@ public class GetNowPlayingMovies extends MovieUseCaseBasic {
     public Observable<Movies> getMovies(Map<String, String> options) {
         return mDataRepository.getNowPlayingMovies(options);
     }
+
+    @Override
+    public void setIsFromCache(boolean isFromCache) {
+        mDataRepository.setIsFromCache(isFromCache);
+    }
 }

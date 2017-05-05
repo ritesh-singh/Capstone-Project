@@ -36,6 +36,9 @@ public abstract class MoviesBasePresenter extends BasePresenter {
 
     protected abstract void onMovieItemClick(final Long movie_id);
 
+    protected void fetchMovies(final Map<String,String> options){
+        setIsToBeFetchedFromCache();
+    }
 
-    protected abstract void fetchMovies(final Map<String,String> options);
+    protected abstract void setIsToBeFetchedFromCache();
 }

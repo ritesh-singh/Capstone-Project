@@ -35,17 +35,4 @@ public class ApplicationModule {
     Context providesContext(){
         return mContext;
     }
-
-    @Provides
-    @ApplicationScope
-    Boolean providesNetworkConnectivityBoolean(Context context){
-        ConnectivityManager cm =
-                (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-
-        return activeNetwork != null &&
-                activeNetwork.isConnectedOrConnecting();
-
-    }
 }

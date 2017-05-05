@@ -83,4 +83,9 @@ public class MoviesPopularPresenter extends MoviesBasePresenter {
                     }
                 });
     }
+
+    @Override
+    protected void setIsToBeFetchedFromCache() {
+        getPopularMovies.setIsFromCache(mMovieView.isNetworkActive());
+    }
 }

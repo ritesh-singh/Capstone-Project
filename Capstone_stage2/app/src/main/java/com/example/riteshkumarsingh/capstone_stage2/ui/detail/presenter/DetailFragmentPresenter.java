@@ -55,6 +55,10 @@ public class DetailFragmentPresenter extends BasePresenter {
     public void fetchMovieDetailsAndVideos(Long movied_id) {
         mDetailView.showProgressBar();
         RxUtils.unSubscribe(mMovieAndVideoSubscription);
+
+        getMovieDetails.setIsFromCache(mDetailView.isNetworkActive());
+        getMovieVideos.setIsFromCache(mDetailView.isNetworkActive());
+
         Observable<MovieDetails> movieDetailsObservable =
                 getMovieDetails
                         .getMovieDetails(movied_id)

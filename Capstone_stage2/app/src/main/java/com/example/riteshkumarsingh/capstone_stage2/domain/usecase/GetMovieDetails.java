@@ -16,9 +16,7 @@ import rx.Observable;
  */
 
 @FragmentScope
-public class GetMovieDetails {
-
-    private DataRepository mDataRepository;
+public class GetMovieDetails extends UseCaseBasic {
 
     @Inject
     public GetMovieDetails(@NonNull DataRepository dataRepository) {
@@ -27,5 +25,10 @@ public class GetMovieDetails {
 
     public Observable<MovieDetails> getMovieDetails(Long movie_id) {
         return mDataRepository.getMovieDetails(movie_id);
+    }
+
+    @Override
+    public void setIsFromCache(boolean isFromCache) {
+        mDataRepository.setIsFromCache(isFromCache);
     }
 }

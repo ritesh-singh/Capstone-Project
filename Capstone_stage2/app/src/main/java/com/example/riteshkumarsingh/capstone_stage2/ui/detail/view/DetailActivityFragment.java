@@ -219,4 +219,9 @@ public class DetailActivityFragment extends BaseFragment
             startActivity(webIntent);
         }
     }
+
+    @Override
+    public boolean isNetworkActive() {
+        return UiUtils.isNetworkActive(getContext());
+    }
 }

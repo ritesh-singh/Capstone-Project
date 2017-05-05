@@ -19,5 +19,4 @@ import dagger.Component;
 public interface AppComponent {
     ApiService getMovieApiService();
     DatabaseReference getDataBaseReference();
-    Boolean isNetworkActive();
 }

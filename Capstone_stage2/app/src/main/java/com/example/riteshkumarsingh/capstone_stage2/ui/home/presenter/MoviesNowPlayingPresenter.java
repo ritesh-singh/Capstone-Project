@@ -48,6 +48,11 @@ public class MoviesNowPlayingPresenter extends MoviesBasePresenter {
     }
 
     @Override
+    protected void setIsToBeFetchedFromCache() {
+        getNowPlayingMovies.setIsFromCache(mMovieView.isNetworkActive());
+    }
+
+    @Override
     public void start() {
         super.start();
         unregisterRxBus();

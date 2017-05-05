@@ -50,6 +50,11 @@ public class MoviesTopRatedPresenter extends MoviesBasePresenter {
     }
 
     @Override
+    protected void setIsToBeFetchedFromCache() {
+        getTopRatedMovies.setIsFromCache(mMovieView.isNetworkActive());
+    }
+
+    @Override
     public void start() {
         super.start();
         unregisterRxBus();

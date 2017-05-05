@@ -8,4 +8,5 @@ public interface BaseView {
     void showProgressBar();
     void hideProgressBar();
     void showError(String message);
+    boolean isNetworkActive();
 }

@@ -18,6 +18,7 @@ import com.example.riteshkumarsingh.capstone_stage2.ui.home.fragments.viewpagerf
 import com.example.riteshkumarsingh.capstone_stage2.ui.home.fragments.viewpagerfragments.explorefragments.ExploreTvShowsFragment;
 import com.example.riteshkumarsingh.capstone_stage2.ui.home.presenter.MoviesNowPlayingPresenter;
 import com.example.riteshkumarsingh.capstone_stage2.ui.home.presenter.MoviesTopRatedPresenter;
+import com.example.riteshkumarsingh.capstone_stage2.utils.UiUtils;
 import com.example.riteshkumarsingh.capstone_stage2.utils.Utils;
 
 import javax.inject.Inject;
@@ -92,5 +93,10 @@ public class MoviesNowPlayingFragment extends MovieBaseFragment {
     public void onStop() {
         super.onStop();
         mMoviesNowPlayingPresenter.stop();
+    }
+
+    @Override
+    public boolean isNetworkActive() {
+        return UiUtils.isNetworkActive(getContext());
     }
 }

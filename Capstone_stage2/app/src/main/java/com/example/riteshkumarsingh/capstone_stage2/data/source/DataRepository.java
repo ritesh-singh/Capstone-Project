@@ -1,6 +1,7 @@
 package com.example.riteshkumarsingh.capstone_stage2.data.source;
 
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.MovieDetails;
@@ -24,51 +25,75 @@ import rx.Observable;
 @FragmentScope
 public class DataRepository implements DataSource{
 
-    private DataSource mDataSource;
+    private DataSource mRemoteDataSource;
+    private DataSource mFireBaseDataSource;
+
+    private boolean isFromCache = false;
 
     @Inject
     public DataRepository(@NonNull RemoteDataSource remoteDataSource,
-                          @NonNull FireBaseDataSource firebaseDataSource,
-                          @NonNull Boolean isNetworkActive) {
-        if (isNetworkActive) {
-            this.mDataSource = remoteDataSource;
-        } else {
-            this.mDataSource = firebaseDataSource;
-        }
+                          @NonNull FireBaseDataSource firebaseDataSource) {
+        this.mRemoteDataSource = remoteDataSource;
+        this.mFireBaseDataSource = firebaseDataSource;
+    }
+
+    public void setIsFromCache(boolean isFromCache){
+        this.isFromCache = isFromCache;
     }
 
     @Override
     public Observable<Movies> getPopularMovies(Map<String, String> options) {
-        return mDataSource.getPopularMovies(options);
+        if (isFromCache){
+            return mFireBaseDataSource.getPopularMovies(options);
+        }
+        return mRemoteDataSource.getPopularMovies(options);
     }
 
     @Override
     public Observable<Movies> getTopRatedMovies(Map<String, String> options) {
-        return mDataSource.getTopRatedMovies(options);
+        if (isFromCache){
+            return mFireBaseDataSource.getTopRatedMovies(options);
+        }
+        return mRemoteDataSource.getTopRatedMovies(options);
     }
 
     @Override
     public Observable<Movies> getNowPlayingMovies(Map<String, String> options) {
-        return mDataSource.getNowPlayingMovies(options);
+        if (isFromCache){
+            return mFireBaseDataSource.getNowPlayingMovies(options);
+        }
+        return mRemoteDataSource.getNowPlayingMovies(options);
     }
 
     @Override
     public Observable<Movies> getUpComingMovies(Map<String, String> options) {
-        return mDataSource.getUpComingMovies(options);
+        if (isFromCache){
+            return mFireBaseDataSource.getUpComingMovies(options);
+        }
+        return mRemoteDataSource.getUpComingMovies(options);
     }
 
     @Override
     public Observable<Movies> getLatestMovies(Map<String, String> options) {
-        return mDataSource.getLatestMovies(options);
+        if (isFromCache){
+            return mFireBaseDataSource.getLatestMovies(options);
+        }
+        return mRemoteDataSource.getLatestMovies(options);
     }
 
     @Override
     public Observable<MovieDetails> getMovieDetails(Long movie_id) {
-        return mDataSource.getMovieDetails(movie_id);
+        if (isFromCache){
+            return mFireBaseDataSource.getMovieDetails(movie_id);
+        }
+        return mRemoteDataSource.getMovieDetails(movie_id);
     }
 
     @Override
     public Observable<MovieVideos> getMovieVideos(Long movie_id) {
-        return mDataSource.getMovieVideos(movie_id);
+        if (isFromCache){
+            return mFireBaseDataSource.getMovieVideos(movie_id);
+        }
+        return mRemoteDataSource.getMovieVideos(movie_id);
     }
 }
