@@ -29,7 +29,7 @@ public final class UiUtils {
         builder.setRequiresCharging(true);
         builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
         builder.setRequiresDeviceIdle(true);
-        builder.setPeriodic(86400000);
+        builder.setPeriodic(86400000); //  24 hr
 //        builder.setPeriodic(30000);
 
         JobScheduler jobScheduler =

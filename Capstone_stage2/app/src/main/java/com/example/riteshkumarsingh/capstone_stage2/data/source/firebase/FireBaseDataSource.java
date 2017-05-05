@@ -9,6 +9,7 @@ import com.example.riteshkumarsingh.capstone_stage2.di.scope.FragmentScope;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Map;
@@ -25,7 +26,6 @@ import rx.Observable;
 public class FireBaseDataSource implements DataSource {
 
     private DatabaseReference mDatabaseReference;
-    private Movies movies;
 
     @Inject
     public FireBaseDataSource(DatabaseReference databaseReference){
@@ -39,8 +39,7 @@ public class FireBaseDataSource implements DataSource {
                     .addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            movies = dataSnapshot.getValue(Movies.class);
-                            subscriber.onNext(movies);
+                            subscriber.onNext(dataSnapshot.getValue(Movies.class));
                             subscriber.onCompleted();
                         }
 
@@ -59,8 +58,7 @@ public class FireBaseDataSource implements DataSource {
                     .addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            movies = dataSnapshot.getValue(Movies.class);
-                            subscriber.onNext(movies);
+                            subscriber.onNext(dataSnapshot.getValue(Movies.class));
                             subscriber.onCompleted();
                         }
 
@@ -79,8 +77,7 @@ public class FireBaseDataSource implements DataSource {
                     .addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            movies = dataSnapshot.getValue(Movies.class);
-                            subscriber.onNext(movies);
+                            subscriber.onNext(dataSnapshot.getValue(Movies.class));
                             subscriber.onCompleted();
                         }
 
@@ -99,8 +96,7 @@ public class FireBaseDataSource implements DataSource {
                     .addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            movies = dataSnapshot.getValue(Movies.class);
-                            subscriber.onNext(movies);
+                            subscriber.onNext(dataSnapshot.getValue(Movies.class));
                             subscriber.onCompleted();
                         }
 
@@ -119,11 +115,41 @@ public class FireBaseDataSource implements DataSource {
 
     @Override
     public Observable<MovieDetails> getMovieDetails(Long movie_id) {
-        return null;
+        Query movieDetailQuery = mDatabaseReference.child(Constants.FIREBASE_MOVIE_DETAILS)
+                .equalTo(String.valueOf(movie_id),"id");
+        return Observable.create(subscriber -> {
+            movieDetailQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    subscriber.onNext(dataSnapshot.getValue(MovieDetails.class));
+                    subscriber.onCompleted();
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    subscriber.onError(new Throwable(databaseError.getMessage()));
+                }
+            });
+        });
     }
 
     @Override
     public Observable<MovieVideos> getMovieVideos(Long movie_id) {
-        return null;
+        Query movieVideosQuery = mDatabaseReference.child(Constants.FIREBASE_MOVIE_VIDEOS)
+                .equalTo(String.valueOf(movie_id),"id");
+        return Observable.create(subscriber -> {
+           movieVideosQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+               @Override
+               public void onDataChange(DataSnapshot dataSnapshot) {
+                   subscriber.onNext(dataSnapshot.getValue(MovieVideos.class));
+                   subscriber.onCompleted();
+               }
+
+               @Override
+               public void onCancelled(DatabaseError databaseError) {
+                    subscriber.onError(new Throwable(databaseError.getMessage()));
+               }
+           });
+        });
     }
 }
