@@ -114,8 +114,9 @@ public class JobSchedulerService extends JobService {
         RxUtils.unSubscribe(mMovieDetailSubscription);
         mMovieDetailSubscription = getMovieDetails.getMovieDetails(movie_id)
                 .subscribe(movieDetails -> {
-                    mDatabaseReference.child(Constants.FIREBASE_MOVIE_DETAILS)
-                            .push()
+                    mDatabaseReference
+                            .child(Constants.FIREBASE_MOVIE_DETAILS)
+                            .child(String.valueOf(movie_id))
                             .setValue(movieDetails,mCompletionListener);
                 },throwable -> {
 
@@ -129,7 +130,7 @@ public class JobSchedulerService extends JobService {
                 .subscribe(movieVideos -> {
                     mDatabaseReference
                             .child(Constants.FIREBASE_MOVIE_VIDEOS)
-                            .push()
+                            .child(String.valueOf(movie_id))
                             .setValue(movieVideos,mCompletionListener);
                 },throwable -> {
 
