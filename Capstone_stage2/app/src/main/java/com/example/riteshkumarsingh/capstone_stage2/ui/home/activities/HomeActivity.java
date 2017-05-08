@@ -69,10 +69,11 @@ public class HomeActivity extends BaseActivity {
 
         mUnbinder = ButterKnife.bind(this);
 
-        mToolBar.setNavigationIcon(R.drawable.ic_menu);
+//        mToolBar.setNavigationIcon(R.drawable.ic_menu);
+
         setSupportActionBar(mToolBar);
 
-        setUpDrawerContent();
+//        setUpDrawerContent();
 
 
         setToolBarTitle(getString(R.string.movies));
