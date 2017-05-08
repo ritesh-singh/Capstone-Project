@@ -32,6 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="100dp"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/poster_image"
@@ -43,6 +44,7 @@
                 android:layout_height="match_parent"
                 android:layout_below="@+id/iv_back_drop"
                 android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
                 android:layout_toRightOf="@id/iv_poster"
                 android:gravity="center_vertical">
 
@@ -76,6 +78,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <RelativeLayout
@@ -87,6 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"
                 android:layout_toLeftOf="@+id/tv_runtime"
                 android:ellipsize="end"
                 android:maxLines="1"

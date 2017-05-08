@@ -6,5 +6,6 @@
         android:id="@+id/iv_poster"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/poster_image"
         android:adjustViewBounds="true"/>
 </FrameLayout>
