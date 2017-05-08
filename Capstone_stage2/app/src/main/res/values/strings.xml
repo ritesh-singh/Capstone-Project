@@ -28,5 +28,7 @@
     <string name="play_button">Play Button</string>
     <string name="poster_image">Poster Image</string>
     <string name="trailer_s">Trailer(s)</string>
+    <string name="movie_widget_text">Movie Widget</string>
+    <string name="movie_image">Movie Image</string>
 
 </resources>

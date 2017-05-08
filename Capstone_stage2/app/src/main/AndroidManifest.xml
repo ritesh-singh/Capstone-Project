@@ -34,6 +34,21 @@
         <service android:name=".data.sync.JobSchedulerService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
+        <receiver android:name=".widget.MovieWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/popular_movie_widget_provider_info" />
+        </receiver>
+
+        <service
+            android:name=".widget.MovieWidgetService"
+            android:enabled="true"
+            android:exported="false"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
     </application>
 
 </manifest>
