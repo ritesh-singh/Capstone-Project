@@ -9,6 +9,7 @@ import com.example.riteshkumarsingh.capstone_stage2.di.DaggerAppComponent;
 import com.example.riteshkumarsingh.capstone_stage2.di.DataModule;
 import com.example.riteshkumarsingh.capstone_stage2.di.NetworkModule;
 import com.facebook.stetho.Stetho;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * Created by riteshkumarsingh on 17/04/17.
@@ -31,6 +32,13 @@ public class MainApplication extends Application {
         if (BuildConfig.DEBUG){
             Stetho.initializeWithDefaults(this);
         }
+
+        /**
+         * Enable Firebase Disk Persistance - offline capablity
+         *
+         * {@code https://firebase.google.com/docs/database/android/offline-capabilities}
+         */
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
     }
 
 

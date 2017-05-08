@@ -35,7 +35,7 @@ public class FireBaseDataSource implements DataSource {
     public Observable<Movies> getPopularMovies(Map<String, String> options) {
         return Observable.create(subscriber -> {
             mDatabaseReference.child(Constants.FIREBASE_POPULAR)
-                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                    .addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             subscriber.onNext(dataSnapshot.getValue(Movies.class));
@@ -54,7 +54,7 @@ public class FireBaseDataSource implements DataSource {
     public Observable<Movies> getTopRatedMovies(Map<String, String> options) {
         return Observable.create(subscriber -> {
             mDatabaseReference.child(Constants.FIREBASE_TOP_RATED)
-                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                    .addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             subscriber.onNext(dataSnapshot.getValue(Movies.class));
@@ -73,7 +73,7 @@ public class FireBaseDataSource implements DataSource {
     public Observable<Movies> getNowPlayingMovies(Map<String, String> options) {
         return Observable.create(subscriber -> {
             mDatabaseReference.child(Constants.FIREBASE_NOW_PLAYING)
-                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                    .addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             subscriber.onNext(dataSnapshot.getValue(Movies.class));
@@ -92,7 +92,7 @@ public class FireBaseDataSource implements DataSource {
     public Observable<Movies> getUpComingMovies(Map<String, String> options) {
         return Observable.create(subscriber -> {
             mDatabaseReference.child(Constants.FIREBASE_UP_COMING)
-                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                    .addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             subscriber.onNext(dataSnapshot.getValue(Movies.class));
@@ -120,7 +120,7 @@ public class FireBaseDataSource implements DataSource {
                 .child(String.valueOf(movie_id));
 
         return Observable.create(subscriber -> {
-            movieDetailDataBaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            movieDetailDataBaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     subscriber.onNext(dataSnapshot.getValue(MovieDetails.class));
@@ -142,7 +142,8 @@ public class FireBaseDataSource implements DataSource {
                 .child(String.valueOf(movie_id));
 
         return Observable.create(subscriber -> {
-            movieVideoDataBaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            movieVideoDataBaseReference
+                    .addValueEventListener(new ValueEventListener() {
                @Override
                public void onDataChange(DataSnapshot dataSnapshot) {
                    subscriber.onNext(dataSnapshot.getValue(MovieVideos.class));

@@ -47,7 +47,7 @@ public final class UiUtils {
         builder.setRequiresDeviceIdle(true);
         builder.setPeriodic(86400000); //  24 hr
 
-//        builder.setPeriodic(30000);
+//        builder.setPeriodic(10000);
 
         JobScheduler jobScheduler =
                 (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);

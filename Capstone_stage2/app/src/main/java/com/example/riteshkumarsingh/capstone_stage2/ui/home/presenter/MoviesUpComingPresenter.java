@@ -27,6 +27,7 @@ public class MoviesUpComingPresenter extends MoviesBasePresenter{
 
     @Override
     public void fetchMovies(Map<String, String> options) {
+        setIsToBeFetchedFromCache();
         mMovieView.showProgressBar();
         getUpComingMovies
                 .getMovies(options)
@@ -48,7 +49,7 @@ public class MoviesUpComingPresenter extends MoviesBasePresenter{
 
     @Override
     protected void setIsToBeFetchedFromCache() {
-        getUpComingMovies.setIsFromCache(mMovieView.isNetworkActive());
+        getUpComingMovies.setIsFromRemote(mMovieView.isNetworkActive());
     }
 
     @Override

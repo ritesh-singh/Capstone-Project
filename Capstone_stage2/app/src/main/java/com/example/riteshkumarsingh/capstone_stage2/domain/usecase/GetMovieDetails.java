@@ -28,7 +28,7 @@ public class GetMovieDetails extends UseCaseBasic {
     }
 
     @Override
-    public void setIsFromCache(boolean isFromCache) {
-        mDataRepository.setIsFromCache(isFromCache);
+    public void setIsFromRemote(boolean isFromCache) {
+        mDataRepository.setIsFromRemote(isFromCache);
     }
 }

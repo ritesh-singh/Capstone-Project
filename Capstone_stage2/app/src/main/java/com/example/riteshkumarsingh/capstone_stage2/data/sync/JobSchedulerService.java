@@ -80,12 +80,12 @@ public class JobSchedulerService extends JobService {
     }
 
     private void setUseCaseBasic(){
-        getPopularMovies.setIsFromCache(false);
-        getTopRatedMovies.setIsFromCache(false);
-        getNowPlayingMovies.setIsFromCache(false);
-        getUpComingMovies.setIsFromCache(false);
-        getMovieDetails.setIsFromCache(false);
-        getMovieVideos.setIsFromCache(false);
+        getPopularMovies.setIsFromRemote(true);
+        getTopRatedMovies.setIsFromRemote(true);
+        getNowPlayingMovies.setIsFromRemote(true);
+        getUpComingMovies.setIsFromRemote(true);
+        getMovieDetails.setIsFromRemote(true);
+        getMovieVideos.setIsFromRemote(true);
     }
 
     @Override

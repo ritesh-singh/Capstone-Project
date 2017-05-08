@@ -3,7 +3,6 @@ package com.example.riteshkumarsingh.capstone_stage2.ui.home.presenter;
 import com.example.riteshkumarsingh.capstone_stage2.constants.Constants;
 import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.Movies;
 import com.example.riteshkumarsingh.capstone_stage2.domain.usecase.GetNowPlayingMovies;
-import com.example.riteshkumarsingh.capstone_stage2.domain.usecase.GetUpComingMovies;
 import com.example.riteshkumarsingh.capstone_stage2.utils.RxUtils;
 
 import java.util.Map;
@@ -28,6 +27,7 @@ public class MoviesNowPlayingPresenter extends MoviesBasePresenter {
 
     @Override
     public void fetchMovies(Map<String, String> options) {
+        setIsToBeFetchedFromCache();
         mMovieView.showProgressBar();
         getNowPlayingMovies
                 .getMovies(options)
@@ -49,7 +49,7 @@ public class MoviesNowPlayingPresenter extends MoviesBasePresenter {
 
     @Override
     protected void setIsToBeFetchedFromCache() {
-        getNowPlayingMovies.setIsFromCache(mMovieView.isNetworkActive());
+        getNowPlayingMovies.setIsFromRemote(mMovieView.isNetworkActive());
     }
 
     @Override

@@ -4,7 +4,6 @@ import android.support.annotation.NonNull;
 
 import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.Movies;
 import com.example.riteshkumarsingh.capstone_stage2.data.source.DataRepository;
-import com.example.riteshkumarsingh.capstone_stage2.di.scope.ActivityScope;
 import com.example.riteshkumarsingh.capstone_stage2.di.scope.FragmentScope;
 
 import java.util.Map;
@@ -31,7 +30,7 @@ public class GetTopRatedMovies extends MovieUseCaseBasic {
     }
 
     @Override
-    public void setIsFromCache(boolean isFromCache) {
-        mDataRepository.setIsFromCache(isFromCache);
+    public void setIsFromRemote(boolean isFromCache) {
+        mDataRepository.setIsFromRemote(isFromCache);
     }
 }

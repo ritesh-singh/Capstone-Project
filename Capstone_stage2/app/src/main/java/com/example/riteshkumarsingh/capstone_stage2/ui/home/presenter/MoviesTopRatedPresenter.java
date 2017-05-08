@@ -30,6 +30,7 @@ public class MoviesTopRatedPresenter extends MoviesBasePresenter {
 
     @Override
     public void fetchMovies(Map<String, String> options) {
+        setIsToBeFetchedFromCache();
         mMovieView.showProgressBar();
         getTopRatedMovies
                 .getMovies(options)
@@ -51,7 +52,7 @@ public class MoviesTopRatedPresenter extends MoviesBasePresenter {
 
     @Override
     protected void setIsToBeFetchedFromCache() {
-        getTopRatedMovies.setIsFromCache(mMovieView.isNetworkActive());
+        getTopRatedMovies.setIsFromRemote(mMovieView.isNetworkActive());
     }
 
     @Override

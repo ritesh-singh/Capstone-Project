@@ -9,5 +9,5 @@ import com.example.riteshkumarsingh.capstone_stage2.data.source.DataRepository;
 public abstract class UseCaseBasic {
     public DataRepository mDataRepository;
 
-    abstract void setIsFromCache(boolean isFromCache);
+    abstract void setIsFromRemote(boolean isFromCache);
 }
