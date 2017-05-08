@@ -5,7 +5,6 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
-import android.transition.Explode;
 import android.transition.Slide;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -21,6 +20,9 @@ import com.example.riteshkumarsingh.capstone_stage2.ui.home.fragments.MoviesFrag
 import com.example.riteshkumarsingh.capstone_stage2.ui.home.fragments.TvFragment;
 import com.example.riteshkumarsingh.capstone_stage2.utils.ActivityUtils;
 import com.example.riteshkumarsingh.capstone_stage2.utils.UiUtils;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -39,8 +41,18 @@ public class HomeActivity extends BaseActivity {
     @BindView(R.id.toolbar)
     Toolbar mToolBar;
 
+    @BindView(R.id.adView)
+    AdView mAdView;
+
     private void schedulerJobScheduler(){
         UiUtils.scheduleJob(this);
+    }
+
+    private void loadAdView(){
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .build();
+        mAdView.loadAd(adRequest);
     }
 
     @Override
@@ -66,6 +78,11 @@ public class HomeActivity extends BaseActivity {
         setToolBarTitle(getString(R.string.movies));
         mNavigationView.setCheckedItem(R.id.nav_movies);
         addFragmentView(R.id.nav_movies);
+
+        MobileAds.initialize(getApplicationContext(),
+                "ca-app-pub-3940256099942544~3347511713");
+
+        loadAdView();
     }
 
 

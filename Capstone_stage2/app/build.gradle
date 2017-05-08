@@ -79,6 +79,9 @@ dependencies {
     // FireBase DataBase
     compile 'com.google.firebase:firebase-database:' + rootProject.ext.firebaseVersion
 
+    // Firebase AdMob
+    compile 'com.google.firebase:firebase-ads:' + rootProject.ext.firebaseVersion
+
     testCompile "org.mockito:mockito-all:$rootProject.ext.mockitoVersion"
     testCompile "org.hamcrest:hamcrest-all:$rootProject.ext.hamcrestVersion"
     testCompile "org.powermock:powermock-module-junit4:$rootProject.ext.powerMockito"
