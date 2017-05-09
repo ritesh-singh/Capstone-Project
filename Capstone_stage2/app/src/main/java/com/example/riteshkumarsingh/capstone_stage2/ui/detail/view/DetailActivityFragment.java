@@ -116,31 +116,34 @@ public class DetailActivityFragment extends BaseFragment
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mDetailFragmentPresenter.start();
         mDetailFragmentPresenter.fetchMovieDetailsAndVideos(mMovieId);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        mDetailFragmentPresenter.stop();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         mBasicUseCaseComponents = null;
+        mDetailFragmentPresenter.stop();
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        mDetailFragmentPresenter.start();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        mDetailFragmentPresenter.stop();
     }
+
+
 
     private void initTrailerRecyclerView(List<VideoResult> videoResults){
         mTrailersRecyclerView.setHasFixedSize(true);
@@ -167,7 +170,7 @@ public class DetailActivityFragment extends BaseFragment
         mTitle.setText(movieDetails.getTitle());
         mTvYear.setText(movieDetails.getReleaseDate());
         mTvGenre.setText(Utils.convertStringToPipeSeparatedString(movieDetails.getGenres()));
-        mTvRunTime.setText(movieDetails.getRuntime() + " mins");
+        mTvRunTime.setText(String.format(getString(R.string.movie_time),movieDetails.getRuntime()));
         mTvOverView.setText(movieDetails.getOverview());
         initTrailerRecyclerView(movieVideos.getVideoResults());
     }

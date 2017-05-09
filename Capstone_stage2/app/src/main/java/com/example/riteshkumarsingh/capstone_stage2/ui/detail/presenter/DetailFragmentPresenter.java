@@ -49,6 +49,7 @@ public class DetailFragmentPresenter extends BasePresenter {
     @Override
     public void stop() {
         super.stop();
+        RxUtils.unSubscribe(mMovieAndVideoSubscription);
     }
 
 

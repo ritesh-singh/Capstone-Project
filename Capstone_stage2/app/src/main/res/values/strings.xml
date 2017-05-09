@@ -30,6 +30,8 @@
     <string name="trailer_s">Trailer(s)</string>
     <string name="movie_widget_text">Movie Widget</string>
     <string name="movie_image">Movie Image</string>
+    <string name="movie_time">%d mins</string>
+
 
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="job_error">Job finished with error</string>

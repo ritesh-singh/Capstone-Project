@@ -22,7 +22,6 @@
         android:id="@+id/iv_movie_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="LOgan"
         android:textAllCaps="true"
         android:textColor="@color/black"
         android:gravity="center"
