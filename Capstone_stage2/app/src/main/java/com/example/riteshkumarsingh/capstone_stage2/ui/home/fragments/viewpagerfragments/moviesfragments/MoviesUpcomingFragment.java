@@ -68,6 +68,7 @@ public class MoviesUpcomingFragment extends MovieBaseFragment {
 
         initRecyclerView(Constants.MOVIES_UPCOMIMG);
 
+        mMoviesUpComingPresenter.start();
         mMoviesUpComingPresenter.fetchMovies(Utils.getMovieOptions("1"));
     }
 
@@ -82,14 +83,8 @@ public class MoviesUpcomingFragment extends MovieBaseFragment {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        mMoviesUpComingPresenter.start();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
+    public void onDestroyView() {
+        super.onDestroyView();
         mMoviesUpComingPresenter.stop();
     }
 

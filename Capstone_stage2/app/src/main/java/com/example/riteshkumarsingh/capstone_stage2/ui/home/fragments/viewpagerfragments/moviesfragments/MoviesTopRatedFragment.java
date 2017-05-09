@@ -68,6 +68,7 @@ public class MoviesTopRatedFragment extends MovieBaseFragment{
 
         initRecyclerView(Constants.MOVIES_TOP_RATED);
 
+        mMoviesTopRatedPresenter.start();
         mMoviesTopRatedPresenter.fetchMovies(Utils.getMovieOptions("1"));
     }
 
@@ -82,14 +83,8 @@ public class MoviesTopRatedFragment extends MovieBaseFragment{
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        mMoviesTopRatedPresenter.start();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
+    public void onDestroyView() {
+        super.onDestroyView();
         mMoviesTopRatedPresenter.stop();
     }
 

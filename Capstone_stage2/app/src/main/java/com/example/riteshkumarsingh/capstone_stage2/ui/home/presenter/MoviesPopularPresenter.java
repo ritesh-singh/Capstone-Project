@@ -56,6 +56,7 @@ public class MoviesPopularPresenter extends MoviesBasePresenter {
     @Override
     protected void unregisterRxBus() {
         RxUtils.unSubscribe(mRxBusSubscription);
+        RxUtils.clear(mCompositeSubscription);
     }
 
     @Override
@@ -67,7 +68,7 @@ public class MoviesPopularPresenter extends MoviesBasePresenter {
     public void fetchMovies(Map<String, String> options) {
         setIsToBeFetchedFromCache();
         mMovieView.showProgressBar();
-        getPopularMovies
+        mCompositeSubscription.add(getPopularMovies
                 .getMovies(options)
                 .compose(RxUtils.applyIOScheduler())
                 .subscribe(new Action1<Movies>() {
@@ -82,7 +83,7 @@ public class MoviesPopularPresenter extends MoviesBasePresenter {
                         mMovieView.hideProgressBar();
                         mMovieView.showError(throwable.getMessage());
                     }
-                });
+                }));
     }
 
     @Override

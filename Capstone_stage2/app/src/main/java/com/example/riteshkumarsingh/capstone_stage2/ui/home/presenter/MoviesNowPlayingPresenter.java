@@ -29,22 +29,23 @@ public class MoviesNowPlayingPresenter extends MoviesBasePresenter {
     public void fetchMovies(Map<String, String> options) {
         setIsToBeFetchedFromCache();
         mMovieView.showProgressBar();
-        getNowPlayingMovies
-                .getMovies(options)
-                .compose(RxUtils.applyIOScheduler())
-                .subscribe(new Action1<Movies>() {
-                    @Override
-                    public void call(Movies movies) {
-                        mMovieView.hideProgressBar();
-                        mMovieView.showResult(movies);
-                    }
-                }, new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable throwable) {
-                        mMovieView.hideProgressBar();
-                        mMovieView.showError(throwable.getMessage());
-                    }
-                });
+        mCompositeSubscription
+                .add(getNowPlayingMovies
+                        .getMovies(options)
+                        .compose(RxUtils.applyIOScheduler())
+                        .subscribe(new Action1<Movies>() {
+                            @Override
+                            public void call(Movies movies) {
+                                mMovieView.hideProgressBar();
+                                mMovieView.showResult(movies);
+                            }
+                        }, new Action1<Throwable>() {
+                            @Override
+                            public void call(Throwable throwable) {
+                                mMovieView.hideProgressBar();
+                                mMovieView.showError(throwable.getMessage());
+                            }
+                        }));
     }
 
     @Override
@@ -81,6 +82,7 @@ public class MoviesNowPlayingPresenter extends MoviesBasePresenter {
     @Override
     protected void unregisterRxBus() {
         RxUtils.unSubscribe(mRxBusSubscription);
+        RxUtils.clear(mCompositeSubscription);
     }
 
     @Override

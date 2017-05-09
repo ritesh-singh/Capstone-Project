@@ -70,6 +70,7 @@ public class MoviesNowPlayingFragment extends MovieBaseFragment {
 
         initRecyclerView(Constants.MOVIES_NOW_PLAYING);
 
+        mMoviesNowPlayingPresenter.start();
         mMoviesNowPlayingPresenter.fetchMovies(Utils.getMovieOptions("1"));
     }
 
@@ -84,14 +85,8 @@ public class MoviesNowPlayingFragment extends MovieBaseFragment {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        mMoviesNowPlayingPresenter.start();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
+    public void onDestroyView() {
+        super.onDestroyView();
         mMoviesNowPlayingPresenter.stop();
     }
 

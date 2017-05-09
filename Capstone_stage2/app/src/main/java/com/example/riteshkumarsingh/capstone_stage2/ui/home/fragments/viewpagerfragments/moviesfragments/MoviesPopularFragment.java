@@ -69,7 +69,7 @@ public class MoviesPopularFragment extends MovieBaseFragment {
 
         initRecyclerView(Constants.MOVIES_POPULAR);
 
-        // TODO - Implement pagination
+        moviesPopularPresenter.start();
         moviesPopularPresenter.fetchMovies(Utils.getMovieOptions("1"));
     }
 
@@ -84,14 +84,8 @@ public class MoviesPopularFragment extends MovieBaseFragment {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        moviesPopularPresenter.start();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
+    public void onDestroyView() {
+        super.onDestroyView();
         moviesPopularPresenter.stop();
     }
 
