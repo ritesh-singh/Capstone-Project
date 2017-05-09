@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.example.riteshkumarsingh.capstone_stage2.BasicUseCaseComponents;
 import com.example.riteshkumarsingh.capstone_stage2.DaggerBasicUseCaseComponents;
 import com.example.riteshkumarsingh.capstone_stage2.MainApplication;
+import com.example.riteshkumarsingh.capstone_stage2.R;
 import com.example.riteshkumarsingh.capstone_stage2.constants.Constants;
 import com.example.riteshkumarsingh.capstone_stage2.data.models.movies.Movies;
 import com.example.riteshkumarsingh.capstone_stage2.domain.usecase.GetMovieDetails;
@@ -195,11 +196,11 @@ public class JobSchedulerService extends JobService {
                 },throwable -> {
                     // Passing true, to reschedule the job
                     jobFinished(jobParameters,true);
-                    Toast.makeText(getApplicationContext(),"Job finished with error",Toast.LENGTH_SHORT)
+                    Toast.makeText(getApplicationContext(), R.string.job_error,Toast.LENGTH_SHORT)
                             .show();
                 },()->{
                     // Passing false,as no need to re-schedule
-                    Toast.makeText(getApplicationContext(),"Job finished successfully",Toast.LENGTH_SHORT)
+                    Toast.makeText(getApplicationContext(), R.string.job_success,Toast.LENGTH_SHORT)
                             .show();
                     jobFinished(jobParameters,false);
                 });
@@ -211,7 +212,7 @@ public class JobSchedulerService extends JobService {
 
     @Override
     public boolean onStartJob(JobParameters jobParameters) {
-        Toast.makeText(getApplicationContext(),"Job started",Toast.LENGTH_SHORT)
+        Toast.makeText(getApplicationContext(), R.string.job_started,Toast.LENGTH_SHORT)
                 .show();
         syncDataToServer(jobParameters);
         return true;

@@ -32,5 +32,9 @@
     <string name="movie_image">Movie Image</string>
 
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="job_error">Job finished with error</string>
+    <string name="job_success">Job finished successfully</string>
+    <string name="job_started">Job started</string>
+    <string name="trailer_play_button">Click to play trailer</string>
 
 </resources>
